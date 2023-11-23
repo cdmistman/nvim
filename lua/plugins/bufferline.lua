@@ -1,5 +1,5 @@
 return {
 	'akinsho/bufferline.nvim',
-	dev = true,
-	dir = vim.g.nixpaths["bufferline-nvim"],
+	dir = vim.g.nixplugins["bufferline.nvim"],
+	config = true,
 }

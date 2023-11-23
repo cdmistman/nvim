@@ -33,32 +33,36 @@
 
         packages.default = config.packages.neovim;
         packages.neovim = let
-          tools = { };
-
-          nix-paths = pkgs.writeText "nvim-nix-paths" ''
-            vim.g.nixpaths = {
-              ${lib.concatLines (
-                  lib.mapAttrsToList
-                    (name: path: "${name} = \"${path}\";")
-                    tools)}
-            }
-          '';
-
-          raw-plugins = with inputs; {
-            "bufferline.nvim" = bufferline-nvim;
+          plugins = {
+            "bufferline.nvim" = inputs.bufferline-nvim;
           };
 
-          built-plugins = lib.mapAttrsToList
-            (name: src: pkgs.vimUtils.buildVimPluginFrom2Nix { inherit name src; })
-            raw-plugins;
+          tools = {};
+
+          mkNixPaths = attrs: lib.concatLines (lib.mapAttrsToList (name: path: "[\"${name}\"] = \"${path}\",") attrs);
+
+          nix-paths = pkgs.writeText "nvim-nix-paths" ''
+            vim.g.nixplugins = {
+              ${mkNixPaths plugins}
+            }
+
+            vim.g.nixtools = {
+              ${mkNixPaths tools}
+            }
+          '';
 
           nvim-with-plugins-config = pkgs.neovimUtils.makeNeovimConfig {
             withNodejs = true;
             withPython3 = true;
             withRuby = true;
 
-            plugins = built-plugins ++ [
+            plugins = [
               pkgs.vimPlugins.nvim-treesitter.withAllGrammars
+
+              (pkgs.vimUtils.buildVimPlugin {
+                name = "lazy.nvim";
+                src = inputs.lazy-nvim;
+              })
             ];
           };
 
