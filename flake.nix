@@ -4,13 +4,21 @@
 
     flake-parts.url = "github:hercules-ci/flake-parts";
 
+    # note: i'm only using lazy.nvim to manage lazy loading and configuration.
+    # it has package management features, but since i'm using nix there's no need!
+    lazy-nvim = {
+      url = "github:folke/lazy.nvim";
+      flake = false;
+    };
+
+    # nvim plugins! not managed by lazy.nvim! cause that's impure and for scrubs!
     bufferline-nvim = {
       url = "github:akinsho/bufferline.nvim/v4.4.0";
       flake = false;
     };
 
-    lazy-nvim = {
-      url = "github:folke/lazy.nvim";
+    neo-tree-nvim = {
+      url = "github:nvim-neo-tree/neo-tree.nvim";
       flake = false;
     };
   };

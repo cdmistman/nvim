@@ -7,11 +7,12 @@ vim.opt.number = true
 vim.opt.signcolumn = 'yes'
 vim.opt.termguicolors = true
 
-require('lazy').setup(
-	"plugins",
-	{
+require('lazy').setup('plugins', {
+	defaults = {
+		lazy = true,
+	},
 	diff = {
-		cmd = "terminal_git",
+		cmd = 'terminal_git',
 	},
 	change_detection = {
 		enabled = false,
