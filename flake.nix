@@ -119,17 +119,32 @@
           };
 
           tools = {
-            "lua-language-server" = pkgs.lua-language-server;
-            "nixd" = pkgs.nixd;
+            inherit (pkgs)
+              gopls
+              haskell-language-server
+              lua-language-server
+              marksman
+              nixd
+              nushell
+              tailwindcss-language-server
+              taplo
+              vscode-langservers-extracted;
+
+            inherit (pkgs.nodePackages_latest)
+              graphql-language-service-cli
+              svelte-language-server
+              typescript-language-server;
           };
 
+          mkNixPath = paths: lib.concatLines (lib.mapAttrsToList (name: path: "\t[\"${name}\"] = \"${path}\",") paths);
+
           nix-paths = pkgs.writeText "nvim-nix-paths.lua" ''
-            vim.g.nixplugins = {
-            ${lib.concatLines (lib.mapAttrsToList (name: path: "\t[\"${name}\"] = \"${path}\",") plugins)}
+            vim.g.nixpkgs = {
+            ${mkNixPath tools}
             }
 
-            vim.g.nixtools = {
-            ${lib.concatLines (lib.mapAttrsToList (name: path: "\t[\"${name}\"] = \"${path}/bin/${name}\",") tools)}
+            vim.g.nixplugins = {
+            ${mkNixPath plugins}
             }
           '';
 
