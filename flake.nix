@@ -38,6 +38,11 @@
       flake = false;
     };
 
+    nui-nvim = {
+      url = "github:MunifTanjim/nui.nvim";
+      flake = false;
+    };
+
     nvim-cmp = {
       url = "github:hrsh7th/nvim-cmp";
       flake = false;
@@ -45,6 +50,16 @@
 
     nvim-lspconfig = {
       url = "github:neovim/nvim-lspconfig";
+      flake = false;
+    };
+
+    nvim-web-devicons = {
+      url = "github:nvim-tree/nvim-web-devicons";
+      flake = false;
+    };
+
+    plenary-nvim = {
+      url = "github:nvim-lua/plenary.nvim";
       flake = false;
     };
 
@@ -86,10 +101,14 @@
               cmp-vsnip
               nvim-cmp
               nvim-lspconfig
+              nvim-web-devicons
               vim-vsnip;
 
             "bufferline.nvim" = inputs.bufferline-nvim;
             "lazy.nvim" = inputs.lazy-nvim;
+            "neo-tree.nvim" = inputs.neo-tree-nvim;
+            "nui.nvim" = inputs.nui-nvim;
+            "plenary.nvim" = inputs.plenary-nvim;
           };
 
           tools = {
@@ -114,11 +133,6 @@
 
             plugins = [
               pkgs.vimPlugins.nvim-treesitter.withAllGrammars
-
-              (pkgs.vimUtils.buildVimPlugin {
-                name = "lazy.nvim";
-                src = inputs.lazy-nvim;
-              })
             ];
           };
 

@@ -1,6 +1,13 @@
 return {
 	name = 'bufferline.nvim',
 	dir = vim.g.nixplugins['bufferline.nvim'],
-	config = true,
 	lazy = false,
+
+	config = function()
+		require('bufferline').setup({})
+	end,
+
+	-- opts = {
+	-- 	diagnostics = 'nvim_lsp',
+	-- },
 }
