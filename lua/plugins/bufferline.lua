@@ -1,13 +1,17 @@
-return {
+local M = {
 	name = 'bufferline.nvim',
 	dir = vim.g.nixplugins['bufferline.nvim'],
 	lazy = false,
 
-	config = function()
-		require('bufferline').setup({})
-	end,
-
-	-- opts = {
-	-- 	diagnostics = 'nvim_lsp',
-	-- },
+	opts = {
+		options = {
+			diagnostics = 'nvim_lsp',
+		},
+	}
 }
+
+function M.config(p, opts)
+	require('bufferline').setup(opts)
+end
+
+return M

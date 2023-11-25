@@ -21,4 +21,9 @@ require('lazy').setup('plugins', {
 	install = {
 		missing = false,
 	},
+	performace = {
+		rtp = {
+			reset = false
+		},
+	},
 })

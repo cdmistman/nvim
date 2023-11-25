@@ -5,6 +5,12 @@
     # additional flakes
     flake-parts.url = "github:hercules-ci/flake-parts";
 
+    neovim-nightly-overlay = {
+      url = "github:nix-community/neovim-nightly-overlay";
+      inputs.flake-parts.follows = "flake-parts";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nixd = {
       url = "github:nix-community/nixd";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -87,6 +93,7 @@
         _module.args.pkgs = import inputs.nixpkgs {
           inherit system;
           overlays = [
+            inputs.neovim-nightly-overlay.overlay
             inputs.nixd.overlays.default
           ];
         };
