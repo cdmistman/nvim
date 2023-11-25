@@ -2,12 +2,18 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
+    # additional flakes
     flake-parts.url = "github:hercules-ci/flake-parts";
+
+    nixd = {
+      url = "github:nix-community/nixd";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # note: i'm only using lazy.nvim to manage lazy loading and configuration.
     # it has package management features, but since i'm using nix there's no need!
     lazy-nvim = {
-      url = "github:folke/lazy.nvim";
+      url = "github:folke/lazy.nvim?submodules=1";
       flake = false;
     };
 
@@ -17,8 +23,33 @@
       flake = false;
     };
 
+    cmp-nvim-lsp = {
+      url = "github:hrsh7th/cmp-nvim-lsp";
+      flake = false;
+    };
+
+    cmp-vsnip = {
+      url = "github:hrsh7th/cmp-vsnip";
+      flake = false;
+    };
+
     neo-tree-nvim = {
       url = "github:nvim-neo-tree/neo-tree.nvim";
+      flake = false;
+    };
+
+    nvim-cmp = {
+      url = "github:hrsh7th/nvim-cmp";
+      flake = false;
+    };
+
+    nvim-lspconfig = {
+      url = "github:neovim/nvim-lspconfig";
+      flake = false;
+    };
+
+    vim-vsnip = {
+      url = "github:hrsh7th/vim-vsnip";
       flake = false;
     };
   };
@@ -35,27 +66,44 @@
         inputs',
         lib,
         pkgs,
+        system,
         ...
       }: {
+        _module.args.pkgs = import inputs.nixpkgs {
+          inherit system;
+          overlays = [
+            inputs.nixd.overlays.default
+          ];
+        };
+
         formatter = pkgs.alejandra;
 
         packages.default = config.packages.neovim;
         packages.neovim = let
           plugins = {
+            inherit (inputs)
+              cmp-nvim-lsp
+              cmp-vsnip
+              nvim-cmp
+              nvim-lspconfig
+              vim-vsnip;
+
             "bufferline.nvim" = inputs.bufferline-nvim;
+            "lazy.nvim" = inputs.lazy-nvim;
           };
 
-          tools = {};
+          tools = {
+            "lua-language-server" = pkgs.lua-language-server;
+            "nixd" = pkgs.nixd;
+          };
 
-          mkNixPaths = attrs: lib.concatLines (lib.mapAttrsToList (name: path: "[\"${name}\"] = \"${path}\",") attrs);
-
-          nix-paths = pkgs.writeText "nvim-nix-paths" ''
+          nix-paths = pkgs.writeText "nvim-nix-paths.lua" ''
             vim.g.nixplugins = {
-              ${mkNixPaths plugins}
+            ${lib.concatLines (lib.mapAttrsToList (name: path: "\t[\"${name}\"] = \"${path}\",") plugins)}
             }
 
             vim.g.nixtools = {
-              ${mkNixPaths tools}
+            ${lib.concatLines (lib.mapAttrsToList (name: path: "\t[\"${name}\"] = \"${path}/bin/${name}\",") tools)}
             }
           '';
 

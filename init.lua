@@ -7,14 +7,18 @@ vim.opt.number = true
 vim.opt.signcolumn = 'yes'
 vim.opt.termguicolors = true
 
+vim.opt.rtp:prepend(vim.g.nixplugins['lazy.nvim'])
 require('lazy').setup('plugins', {
+	change_detection = {
+		enabled = false,
+	},
 	defaults = {
 		lazy = true,
 	},
 	diff = {
 		cmd = 'terminal_git',
 	},
-	change_detection = {
-		enabled = false,
+	install = {
+		missing = false,
 	},
 })
