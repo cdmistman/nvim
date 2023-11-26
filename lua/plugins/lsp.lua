@@ -36,7 +36,7 @@ local lspConfigs = {
 		cmd = { vim.g.nixpkgs['vscode-langservers-extracted'] .. '/bin/vscode-html-language-server', '--stdio' },
 	},
 
-	json = {
+	jsonls = {
 		cmd = { vim.g.nixpkgs['vscode-langservers-extracted'] .. '/bin/vscode-json-language-server', '--stdio' },
 	},
 
