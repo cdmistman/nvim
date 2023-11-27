@@ -158,7 +158,7 @@
     };
 
     "telescope.nvim" = {
-      url = "github:folke/telescope.nvim";
+      url = "github:nvim-telescope/telescope.nvim?ref=0.1.4";
       flake = false;
     };
 
