@@ -1,4 +1,4 @@
-local M = {
+return {
 	name = 'rust-tools',
 	dir = vim.g.nixplugins['rust-tools.nvim'],
 	event = 'VeryLazy',
@@ -15,6 +15,4 @@ local M = {
 		},
 	},
 }
-
-return M
 
