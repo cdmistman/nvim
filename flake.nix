@@ -3,6 +3,11 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
     # additional flakes
+    fenix = {
+      url = "github:nix-community/fenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     flake-parts.url = "github:hercules-ci/flake-parts";
 
     neovim-nightly-overlay = {
@@ -18,7 +23,7 @@
 
     # nvim plugins! not managed by lazy.nvim! cause that's impure and for scrubs!
     "aerial.nvim" = {
-      url = "github:folke/aerial.nvim";
+      url = "github:stevearc/aerial.nvim";
       flake = false;
     };
 
@@ -196,6 +201,7 @@
         _module.args.pkgs = import inputs.nixpkgs {
           inherit system;
           overlays = [
+            inputs.fenix.overlays.default
             inputs.neovim-nightly-overlay.overlay
             inputs.nixd.overlays.default
           ];
@@ -257,6 +263,8 @@
               taplo
               vscode-langservers-extracted
               ;
+
+            inherit (pkgs.fenix) rust-analyzer;
 
             inherit
               (pkgs.nodePackages_latest)

@@ -3,15 +3,15 @@
     "aerial.nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1697127720,
-        "narHash": "sha256-NoLbU7+cPjAnDcbbhVrcZHzvNUl8TVqHW45Fr8ihh8A=",
-        "owner": "folke",
+        "lastModified": 1700864529,
+        "narHash": "sha256-rdViCf8AVsrhUHuumazWnAbZ44o2UzOrfC1ByOm5I9c=",
+        "owner": "stevearc",
         "repo": "aerial.nvim",
-        "rev": "2393af45907fe1d33333a71dc8731aa8ba400503",
+        "rev": "88764566f96bf900a64b3dcd6d178cfb69b1c8ce",
         "type": "github"
       },
       "original": {
-        "owner": "folke",
+        "owner": "stevearc",
         "repo": "aerial.nvim",
         "type": "github"
       }
@@ -158,6 +158,27 @@
       "original": {
         "owner": "zbirenbaum",
         "repo": "copilot.lua",
+        "type": "github"
+      }
+    },
+    "fenix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "rust-analyzer-src": "rust-analyzer-src"
+      },
+      "locked": {
+        "lastModified": 1700979662,
+        "narHash": "sha256-AlS2tefQT6fBxWGKKkQNXh1HAyzlwBQ8P6AUMmI1mxw=",
+        "owner": "nix-community",
+        "repo": "fenix",
+        "rev": "6f824c3d294716db51fbf8d555af8b9514cdbec4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "fenix",
         "type": "github"
       }
     },
@@ -649,6 +670,7 @@
         "conform.nvim": "conform.nvim",
         "copilot-cmp": "copilot-cmp",
         "copilot.lua": "copilot.lua",
+        "fenix": "fenix",
         "flake-parts": "flake-parts",
         "flash.nvim": "flash.nvim",
         "hydra.nvim": "hydra.nvim",
@@ -675,6 +697,23 @@
         "tokyonight.nvim": "tokyonight.nvim",
         "vim-vsnip": "vim-vsnip",
         "yanky.nvim": "yanky.nvim"
+      }
+    },
+    "rust-analyzer-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1700937652,
+        "narHash": "sha256-sHczfsDUYH1CXPqNztnWH0gFo7xU0AuqQD96qSVC2HI=",
+        "owner": "rust-lang",
+        "repo": "rust-analyzer",
+        "rev": "79ec2c584b990a533f7fde685a51d45d2a896103",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rust-lang",
+        "ref": "nightly",
+        "repo": "rust-analyzer",
+        "type": "github"
       }
     },
     "rust-tools.nvim": {
