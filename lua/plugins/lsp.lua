@@ -4,6 +4,7 @@ local M = {
 	event = 'VeryLazy',
 
 	dependencies = {
+		'direnv.vim',
 		'nvim-cmp',
 	},
 }

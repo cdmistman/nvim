@@ -113,22 +113,6 @@
         "type": "github"
       }
     },
-    "conform.nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1697061489,
-        "narHash": "sha256-nVrXcShnwKP8RFd/qGLO4fIdg029yZaOMbP4Vcuwq2o=",
-        "owner": "folke",
-        "repo": "conform.nvim",
-        "rev": "4db76a68b47aa6e9777e4da4aed16f0fff74920e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "folke",
-        "repo": "conform.nvim",
-        "type": "github"
-      }
-    },
     "copilot-cmp": {
       "flake": false,
       "locked": {
@@ -158,6 +142,22 @@
       "original": {
         "owner": "zbirenbaum",
         "repo": "copilot.lua",
+        "type": "github"
+      }
+    },
+    "direnv.vim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1687816989,
+        "narHash": "sha256-0PpU/lA54VAEa4w/xON39u9H8d5MxSTqVwiV09NAEz0=",
+        "owner": "direnv",
+        "repo": "direnv.vim",
+        "rev": "165031fa2c8dbb1e78dfd7054fe064ea926384cb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "direnv",
+        "repo": "direnv.vim",
         "type": "github"
       }
     },
@@ -355,6 +355,7 @@
       },
       "original": {
         "owner": "nvim-neo-tree",
+        "ref": "3.13",
         "repo": "neo-tree.nvim",
         "type": "github"
       }
@@ -667,9 +668,9 @@
         "cmp-nvim-lsp-document-symbol": "cmp-nvim-lsp-document-symbol",
         "cmp-nvim-lsp-signature-help": "cmp-nvim-lsp-signature-help",
         "cmp-vsnip": "cmp-vsnip",
-        "conform.nvim": "conform.nvim",
         "copilot-cmp": "copilot-cmp",
         "copilot.lua": "copilot.lua",
+        "direnv.vim": "direnv.vim",
         "fenix": "fenix",
         "flake-parts": "flake-parts",
         "flash.nvim": "flash.nvim",

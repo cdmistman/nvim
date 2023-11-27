@@ -67,8 +67,8 @@
       flake = false;
     };
 
-    "conform.nvim" = {
-      url = "github:folke/conform.nvim";
+    "direnv.vim" = {
+      url = "github:direnv/direnv.vim";
       flake = false;
     };
 
@@ -93,7 +93,7 @@
     };
 
     "neo-tree.nvim" = {
-      url = "github:nvim-neo-tree/neo-tree.nvim";
+      url = "github:nvim-neo-tree/neo-tree.nvim?ref=3.13";
       flake = false;
     };
 
@@ -221,9 +221,9 @@
               cmp-nvim-lsp-document-symbol
               cmp-nvim-lsp-signature-help
               cmp-vsnip
-              "conform.nvim"
               "copilot.lua"
               copilot-cmp
+              "direnv.vim"
               "flash.nvim"
               "hydra.nvim"
               "lazy.nvim"
