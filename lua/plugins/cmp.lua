@@ -77,7 +77,7 @@ function M.config(p)
 					fallback()
 				end
 			end),
-			['<Esc>'] = cmp.mapping(function(fallback)
+			['\\'] = cmp.mapping(function(fallback)
 				if cmp.visible() then
 					cmp.close()
 				else
