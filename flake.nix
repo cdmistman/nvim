@@ -27,8 +27,23 @@
       flake = false;
     };
 
+    cmp-buffer = {
+      url = "github:hrsh7th/cmp-buffer";
+      flake = false;
+    };
+
     cmp-nvim-lsp = {
       url = "github:hrsh7th/cmp-nvim-lsp";
+      flake = false;
+    };
+
+    cmp-nvim-lsp-document-symbol = {
+      url = "github:hrsh7th/cmp-nvim-lsp-document-symbol";
+      flake = false;
+    };
+
+    cmp-nvim-lsp-signature-help = {
+      url = "github:hrsh7th/cmp-nvim-lsp-signature-help";
       flake = false;
     };
 
@@ -191,10 +206,14 @@
         packages.default = config.packages.neovim;
         packages.neovim = let
           plugins = {
-            inherit (inputs)
+            inherit
+              (inputs)
               "aerial.nvim"
               "bufferline.nvim"
+              cmp-buffer
               cmp-nvim-lsp
+              cmp-nvim-lsp-document-symbol
+              cmp-nvim-lsp-signature-help
               cmp-vsnip
               "conform.nvim"
               "copilot.lua"
@@ -220,25 +239,31 @@
               "todo-comments.nvim"
               "tokyonight.nvim"
               vim-vsnip
-              "yanky.nvim";
+              "yanky.nvim"
+              ;
           };
 
           tools = {
-            inherit (pkgs)
+            inherit
+              (pkgs)
               gopls
               haskell-language-server
               lua-language-server
               marksman
               nixd
+              nodejs_20
               nushell
               tailwindcss-language-server
               taplo
-              vscode-langservers-extracted;
+              vscode-langservers-extracted
+              ;
 
-            inherit (pkgs.nodePackages_latest)
+            inherit
+              (pkgs.nodePackages_latest)
               graphql-language-service-cli
               svelte-language-server
-              typescript-language-server;
+              typescript-language-server
+              ;
           };
 
           mkNixPath = paths: lib.concatLines (lib.mapAttrsToList (name: path: "\t[\"${name}\"] = \"${path}\",") paths);
