@@ -5,6 +5,13 @@ return {
 
 	dependencies = {
 		'nui.nvim',
+
+		{
+			name = 'nvim-notify',
+			dir = vim.g.nixplugins['nvim-notify'],
+			config = true,
+			main = 'notify',
+		},
 	},
 
 	opts = {

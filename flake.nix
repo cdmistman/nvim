@@ -117,6 +117,11 @@
       flake = false;
     };
 
+    nvim-notify = {
+      url = "github:rcarriga/nvim-notify";
+      flake = false;
+    };
+
     nvim-treesitter-context = {
       url = "github:nvim-treesitter/nvim-treesitter-context";
       flake = false;
@@ -228,6 +233,7 @@
               "nui.nvim"
               nvim-cmp
               nvim-lspconfig
+              nvim-notify
               nvim-treesitter-context
               nvim-web-devicons
               "peek.nvim"
