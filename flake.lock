@@ -113,6 +113,22 @@
         "type": "github"
       }
     },
+    "comment.nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1691409559,
+        "narHash": "sha256-+dF1ZombrlO6nQggufSb0igXW5zwU++o0W/5ZA07cdc=",
+        "owner": "numToStr",
+        "repo": "Comment.nvim",
+        "rev": "0236521ea582747b58869cb72f70ccfa967d2e89",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numToStr",
+        "repo": "Comment.nvim",
+        "type": "github"
+      }
+    },
     "copilot-cmp": {
       "flake": false,
       "locked": {
@@ -668,6 +684,7 @@
         "cmp-nvim-lsp-document-symbol": "cmp-nvim-lsp-document-symbol",
         "cmp-nvim-lsp-signature-help": "cmp-nvim-lsp-signature-help",
         "cmp-vsnip": "cmp-vsnip",
+        "comment.nvim": "comment.nvim",
         "copilot-cmp": "copilot-cmp",
         "copilot.lua": "copilot.lua",
         "direnv.vim": "direnv.vim",

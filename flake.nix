@@ -57,6 +57,11 @@
       flake = false;
     };
 
+    "comment.nvim" = {
+      url = "github:numToStr/Comment.nvim";
+      flake = false;
+    };
+
     "copilot.lua" = {
       url = "github:zbirenbaum/copilot.lua";
       flake = false;
@@ -221,6 +226,7 @@
               cmp-nvim-lsp-document-symbol
               cmp-nvim-lsp-signature-help
               cmp-vsnip
+              "comment.nvim"
               "copilot.lua"
               copilot-cmp
               "direnv.vim"
