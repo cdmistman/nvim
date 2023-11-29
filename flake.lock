@@ -1,6 +1,6 @@
 {
   "nodes": {
-    "aerial.nvim": {
+    "aerial-nvim": {
       "flake": false,
       "locked": {
         "lastModified": 1700864529,
@@ -16,7 +16,7 @@
         "type": "github"
       }
     },
-    "bufferline.nvim": {
+    "bufferline-nvim": {
       "flake": false,
       "locked": {
         "lastModified": 1695205521,
@@ -113,7 +113,7 @@
         "type": "github"
       }
     },
-    "comment.nvim": {
+    "comment-nvim": {
       "flake": false,
       "locked": {
         "lastModified": 1691409559,
@@ -145,14 +145,14 @@
         "type": "github"
       }
     },
-    "copilot.lua": {
+    "copilot-lua": {
       "flake": false,
       "locked": {
-        "lastModified": 1699122523,
-        "narHash": "sha256-z19D6CybF2TkpOreOqUFTT2uyX8yRt13b/4JNrWEL5U=",
+        "lastModified": 1701213509,
+        "narHash": "sha256-RZwvecYek53HLxE9h0CiprwfMgogCpJknewU/HGXXu8=",
         "owner": "zbirenbaum",
         "repo": "copilot.lua",
-        "rev": "73047082d72fcfdde1f73b7f17ad495cffcbafaa",
+        "rev": "3665ed0f3ef3ad68673df7195789d134d0d1fdb0",
         "type": "github"
       },
       "original": {
@@ -161,7 +161,7 @@
         "type": "github"
       }
     },
-    "direnv.vim": {
+    "direnv-vim": {
       "flake": false,
       "locked": {
         "lastModified": 1687816989,
@@ -289,7 +289,7 @@
         "type": "github"
       }
     },
-    "flash.nvim": {
+    "flash-nvim": {
       "flake": false,
       "locked": {
         "lastModified": 1697529873,
@@ -327,7 +327,7 @@
         "type": "github"
       }
     },
-    "hydra.nvim": {
+    "hydra-nvim": {
       "flake": false,
       "locked": {
         "lastModified": 1675678260,
@@ -343,7 +343,7 @@
         "type": "github"
       }
     },
-    "lazy.nvim": {
+    "lazy-nvim": {
       "flake": false,
       "locked": {
         "lastModified": 1699092727,
@@ -359,7 +359,7 @@
         "type": "github"
       }
     },
-    "neo-tree.nvim": {
+    "neo-tree-nvim": {
       "flake": false,
       "locked": {
         "lastModified": 1700340801,
@@ -376,7 +376,7 @@
         "type": "github"
       }
     },
-    "neoscroll.nvim": {
+    "neoscroll-nvim": {
       "flake": false,
       "locked": {
         "lastModified": 1699653006,
@@ -515,7 +515,7 @@
         "type": "github"
       }
     },
-    "noice.nvim": {
+    "noice-nvim": {
       "flake": false,
       "locked": {
         "lastModified": 1698229631,
@@ -531,14 +531,14 @@
         "type": "github"
       }
     },
-    "nui.nvim": {
+    "nui-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1700861764,
-        "narHash": "sha256-LyxOxtuS+++G9n6kW5DPMk4CDYKffNVpjjgCUn0CxLM=",
+        "lastModified": 1701017030,
+        "narHash": "sha256-FXxKOvLOaaAHLP0PebZeITfl0pyC+e2vt8yztTmJmJA=",
         "owner": "MunifTanjim",
         "repo": "nui.nvim",
-        "rev": "401a7c65bfd6433e1b0b48d2c246e2621fc44387",
+        "rev": "257dccc43b4badc735978f0791d216f7d665b75a",
         "type": "github"
       },
       "original": {
@@ -627,7 +627,7 @@
         "type": "github"
       }
     },
-    "peek.nvim": {
+    "peek-nvim": {
       "flake": false,
       "locked": {
         "lastModified": 1699334073,
@@ -643,7 +643,7 @@
         "type": "github"
       }
     },
-    "persistence.nvim": {
+    "persistence-nvim": {
       "flake": false,
       "locked": {
         "lastModified": 1697398923,
@@ -659,7 +659,7 @@
         "type": "github"
       }
     },
-    "plenary.nvim": {
+    "plenary-nvim": {
       "flake": false,
       "locked": {
         "lastModified": 1700900336,
@@ -677,44 +677,44 @@
     },
     "root": {
       "inputs": {
-        "aerial.nvim": "aerial.nvim",
-        "bufferline.nvim": "bufferline.nvim",
+        "aerial-nvim": "aerial-nvim",
+        "bufferline-nvim": "bufferline-nvim",
         "cmp-buffer": "cmp-buffer",
         "cmp-nvim-lsp": "cmp-nvim-lsp",
         "cmp-nvim-lsp-document-symbol": "cmp-nvim-lsp-document-symbol",
         "cmp-nvim-lsp-signature-help": "cmp-nvim-lsp-signature-help",
         "cmp-vsnip": "cmp-vsnip",
-        "comment.nvim": "comment.nvim",
+        "comment-nvim": "comment-nvim",
         "copilot-cmp": "copilot-cmp",
-        "copilot.lua": "copilot.lua",
-        "direnv.vim": "direnv.vim",
+        "copilot-lua": "copilot-lua",
+        "direnv-vim": "direnv-vim",
         "fenix": "fenix",
         "flake-parts": "flake-parts",
-        "flash.nvim": "flash.nvim",
-        "hydra.nvim": "hydra.nvim",
-        "lazy.nvim": "lazy.nvim",
-        "neo-tree.nvim": "neo-tree.nvim",
-        "neoscroll.nvim": "neoscroll.nvim",
+        "flash-nvim": "flash-nvim",
+        "hydra-nvim": "hydra-nvim",
+        "lazy-nvim": "lazy-nvim",
+        "neo-tree-nvim": "neo-tree-nvim",
+        "neoscroll-nvim": "neoscroll-nvim",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nixd": "nixd",
         "nixpkgs": "nixpkgs",
-        "noice.nvim": "noice.nvim",
-        "nui.nvim": "nui.nvim",
+        "noice-nvim": "noice-nvim",
+        "nui-nvim": "nui-nvim",
         "nvim-cmp": "nvim-cmp",
         "nvim-lspconfig": "nvim-lspconfig",
         "nvim-notify": "nvim-notify",
         "nvim-treesitter-context": "nvim-treesitter-context",
         "nvim-web-devicons": "nvim-web-devicons",
-        "peek.nvim": "peek.nvim",
-        "persistence.nvim": "persistence.nvim",
-        "plenary.nvim": "plenary.nvim",
-        "rust-tools.nvim": "rust-tools.nvim",
-        "substitute.nvim": "substitute.nvim",
-        "telescope.nvim": "telescope.nvim",
-        "todo-comments.nvim": "todo-comments.nvim",
-        "tokyonight.nvim": "tokyonight.nvim",
+        "peek-nvim": "peek-nvim",
+        "persistence-nvim": "persistence-nvim",
+        "plenary-nvim": "plenary-nvim",
+        "rust-tools-nvim": "rust-tools-nvim",
+        "substitute-nvim": "substitute-nvim",
+        "telescope-nvim": "telescope-nvim",
+        "todo-comments-nvim": "todo-comments-nvim",
+        "tokyonight-nvim": "tokyonight-nvim",
         "vim-vsnip": "vim-vsnip",
-        "yanky.nvim": "yanky.nvim"
+        "yanky-nvim": "yanky-nvim"
       }
     },
     "rust-analyzer-src": {
@@ -734,7 +734,7 @@
         "type": "github"
       }
     },
-    "rust-tools.nvim": {
+    "rust-tools-nvim": {
       "flake": false,
       "locked": {
         "lastModified": 1689033186,
@@ -750,7 +750,7 @@
         "type": "github"
       }
     },
-    "substitute.nvim": {
+    "substitute-nvim": {
       "flake": false,
       "locked": {
         "lastModified": 1700202535,
@@ -781,7 +781,7 @@
         "type": "github"
       }
     },
-    "telescope.nvim": {
+    "telescope-nvim": {
       "flake": false,
       "locked": {
         "lastModified": 1697004956,
@@ -798,7 +798,7 @@
         "type": "github"
       }
     },
-    "todo-comments.nvim": {
+    "todo-comments-nvim": {
       "flake": false,
       "locked": {
         "lastModified": 1698270703,
@@ -814,7 +814,7 @@
         "type": "github"
       }
     },
-    "tokyonight.nvim": {
+    "tokyonight-nvim": {
       "flake": false,
       "locked": {
         "lastModified": 1698229236,
@@ -846,14 +846,14 @@
         "type": "github"
       }
     },
-    "yanky.nvim": {
+    "yanky-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1700812435,
-        "narHash": "sha256-iH547TB13jmbT5Byy9XBLhuYtRVs5fwnRn7u5bMQY38=",
+        "lastModified": 1701070071,
+        "narHash": "sha256-/Ecclr/5zQH2NlNhrXdPlKgcjAUPoKmJ6gnyxF9P7QY=",
         "owner": "gbprod",
         "repo": "yanky.nvim",
-        "rev": "5ba331de8a8d18e1ec345d26e865bc3a0db2e8be",
+        "rev": "6bb9ffd3cad4c9876bda54e19d0659de28a4f84f",
         "type": "github"
       },
       "original": {

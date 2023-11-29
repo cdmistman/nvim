@@ -22,12 +22,12 @@
     };
 
     # nvim plugins! not managed by lazy.nvim! cause that's impure and for scrubs!
-    "aerial.nvim" = {
+    aerial-nvim = {
       url = "github:stevearc/aerial.nvim";
       flake = false;
     };
 
-    "bufferline.nvim" = {
+    bufferline-nvim = {
       url = "github:akinsho/bufferline.nvim/v4.4.0";
       flake = false;
     };
@@ -57,12 +57,12 @@
       flake = false;
     };
 
-    "comment.nvim" = {
+    comment-nvim = {
       url = "github:numToStr/Comment.nvim";
       flake = false;
     };
 
-    "copilot.lua" = {
+    copilot-lua = {
       url = "github:zbirenbaum/copilot.lua";
       flake = false;
     };
@@ -72,42 +72,42 @@
       flake = false;
     };
 
-    "direnv.vim" = {
+    direnv-vim = {
       url = "github:direnv/direnv.vim";
       flake = false;
     };
 
-    "flash.nvim" = {
+    flash-nvim = {
       url = "github:folke/flash.nvim";
       flake = false;
     };
 
-    "hydra.nvim" = {
+    hydra-nvim = {
       url = "github:anuvyklack/hydra.nvim";
       flake = false;
     };
 
-    "lazy.nvim" = {
+    lazy-nvim = {
       url = "github:folke/lazy.nvim?submodules=1";
       flake = false;
     };
 
-    "neoscroll.nvim" = {
+    neoscroll-nvim = {
       url = "github:karb94/neoscroll.nvim";
       flake = false;
     };
 
-    "neo-tree.nvim" = {
+    neo-tree-nvim = {
       url = "github:nvim-neo-tree/neo-tree.nvim?ref=3.13";
       flake = false;
     };
 
-    "noice.nvim" = {
+    noice-nvim = {
       url = "github:folke/noice.nvim";
       flake = false;
     };
 
-    "nui.nvim" = {
+    nui-nvim = {
       url = "github:MunifTanjim/nui.nvim";
       flake = false;
     };
@@ -137,42 +137,42 @@
       flake = false;
     };
 
-    "peek.nvim" = {
+    peek-nvim = {
       url = "github:toppair/peek.nvim";
       flake = false;
     };
 
-    "persistence.nvim" = {
+    persistence-nvim = {
       url = "github:folke/persistence.nvim";
       flake = false;
     };
 
-    "plenary.nvim" = {
+    plenary-nvim = {
       url = "github:nvim-lua/plenary.nvim";
       flake = false;
     };
 
-    "rust-tools.nvim" = {
+    rust-tools-nvim = {
       url = "github:simrat39/rust-tools.nvim";
       flake = false;
     };
 
-    "substitute.nvim" = {
+    substitute-nvim = {
       url = "github:gbprod/substitute.nvim";
       flake = false;
     };
 
-    "telescope.nvim" = {
+    telescope-nvim = {
       url = "github:nvim-telescope/telescope.nvim?ref=0.1.4";
       flake = false;
     };
 
-    "todo-comments.nvim" = {
+    todo-comments-nvim = {
       url = "github:folke/todo-comments.nvim";
       flake = false;
     };
 
-    "tokyonight.nvim" = {
+    tokyonight-nvim = {
       url = "github:folke/tokyonight.nvim";
       flake = false;
     };
@@ -182,7 +182,7 @@
       flake = false;
     };
 
-    "yanky.nvim" = {
+    yanky-nvim = {
       url = "github:gbprod/yanky.nvim";
       flake = false;
     };
@@ -219,40 +219,41 @@
           plugins = {
             inherit
               (inputs)
-              "aerial.nvim"
-              "bufferline.nvim"
               cmp-buffer
               cmp-nvim-lsp
               cmp-nvim-lsp-document-symbol
               cmp-nvim-lsp-signature-help
               cmp-vsnip
-              "comment.nvim"
-              "copilot.lua"
               copilot-cmp
-              "direnv.vim"
-              "flash.nvim"
-              "hydra.nvim"
-              "lazy.nvim"
-              "neoscroll.nvim"
-              "neo-tree.nvim"
-              "noice.nvim"
-              "nui.nvim"
               nvim-cmp
               nvim-lspconfig
               nvim-notify
               nvim-treesitter-context
               nvim-web-devicons
-              "peek.nvim"
-              "persistence.nvim"
-              "plenary.nvim"
-              "rust-tools.nvim"
-              "substitute.nvim"
-              "telescope.nvim"
-              "todo-comments.nvim"
-              "tokyonight.nvim"
               vim-vsnip
-              "yanky.nvim"
               ;
+
+            "aerial.nvim" = inputs.aerial-nvim;
+            "bufferline.nvim" = inputs.bufferline-nvim;
+            "comment.nvim" = inputs.comment-nvim;
+            "copilot.lua" = inputs.copilot-lua;
+            "direnv.vim" = inputs.direnv-vim;
+            "flash.nvim" = inputs.flash-nvim;
+            "hydra.nvim" = inputs.hydra-nvim;
+            "lazy.nvim" = inputs.lazy-nvim;
+            "neoscroll.nvim" = inputs.neoscroll-nvim;
+            "neo-tree.nvim" = inputs.neo-tree-nvim;
+            "noice.nvim" = inputs.noice-nvim;
+            "nui.nvim" = inputs.nui-nvim;
+            "peek.nvim" = inputs.peek-nvim;
+            "persistence.nvim" = inputs.persistence-nvim;
+            "plenary.nvim" = inputs.plenary-nvim;
+            "rust-tools.nvim" = inputs.rust-tools-nvim;
+            "substitute.nvim" = inputs.substitute-nvim;
+            "telescope.nvim" = inputs.telescope-nvim;
+            "todo-comments.nvim" = inputs.todo-comments-nvim;
+            "tokyonight.nvim" = inputs.tokyonight-nvim;
+            "yanky.nvim" = inputs.yanky-nvim;
           };
 
           tools = {
