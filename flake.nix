@@ -283,15 +283,18 @@
 
           mkNixPath = paths: lib.concatLines (lib.mapAttrsToList (name: path: "\t[\"${name}\"] = \"${path}\",") paths);
 
-          nix-paths = pkgs.writeText "nvim-nix-paths.lua" ''
-            vim.g.nixpkgs = {
-            ${mkNixPath tools}
-            }
+          nix-paths = pkgs.writeTextFile {
+            name = "nvim-nix-paths.lua";
+            text = ''
+              vim.g.nixpkgs = {
+              ${mkNixPath tools}
+              }
 
-            vim.g.nixplugins = {
-            ${mkNixPath plugins}
-            }
-          '';
+              vim.g.nixplugins = {
+              ${mkNixPath plugins}
+              }
+            '';
+          };
 
           nvim-with-plugins-config = pkgs.neovimUtils.makeNeovimConfig {
             withNodejs = true;
