@@ -1,7 +1,8 @@
-local M = {
+return {
 	name = 'bufferline.nvim',
 	dir = vim.g.nixplugins['bufferline.nvim'],
-	lazy = false,
+	main = 'bufferline',
+	event = 'VeryLazy',
 
 	opts = {
 		options = {
@@ -9,9 +10,3 @@ local M = {
 		},
 	}
 }
-
-function M.config(p, opts)
-	require('bufferline').setup(opts)
-end
-
-return M

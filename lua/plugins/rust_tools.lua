@@ -7,7 +7,6 @@ return {
 		'nvim-lspconfig',
 	},
 
-	config = true,
 	opts = {
 		server = {
 			cmd = { vim.g.nixpkgs['rust-analyzer'] .. '/bin/rust-analyzer' },

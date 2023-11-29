@@ -1,7 +1,6 @@
 return {
 	name = 'neo-tree.nvim',
 	dir = vim.g.nixplugins['neo-tree.nvim'],
-	config = true,
 	event = 'VeryLazy',
 
 	dependencies = {

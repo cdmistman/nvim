@@ -9,7 +9,6 @@ return {
 		'rust-tools',
 	},
 
-	config = true,
 	opts = {
 		float = {
 			relative = 'win',
