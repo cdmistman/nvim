@@ -289,10 +289,6 @@
               vim.g.nixpkgs = {
               ${mkNixPath tools}
               }
-
-              vim.g.nixplugins = {
-              ${mkNixPath plugins}
-              }
             '';
           };
 
@@ -301,9 +297,17 @@
             withPython3 = true;
             withRuby = true;
 
-            plugins = [
-              pkgs.vimPlugins.nvim-treesitter.withAllGrammars
-            ];
+            plugins =
+              [
+                pkgs.vimPlugins.nvim-treesitter.withAllGrammars
+              ]
+              ++ lib.mapAttrsToList
+              (name: plugin:
+                pkgs.vimUtils.buildVimPlugin {
+                  inherit name;
+                  src = plugin;
+                })
+              plugins;
           };
 
           nvim-with-plugins =
