@@ -16,7 +16,6 @@ function loadPlugin(modname, modpath)
 
 	local cfg = require(modname)
 	local pluginName = cfg[1]
-	vim.print(vim.inspect(cfg))
 	plugins[pluginName] = cfg
 
 	local loadThisPlugin = function(ev)
@@ -24,6 +23,12 @@ function loadPlugin(modname, modpath)
 			vim.print('loading plugin ' .. pluginName .. ' for event ' .. ev.event .. ' : ' .. vim.inspect(ev))
 		else
 			vim.print('loading plugin ' .. pluginName)
+		end
+
+		if cfg['dependencies'] ~= nil then
+			vim.api.nvim_exec_autocmds('User', {
+				pattern = cfg['dependencies'],
+			})
 		end
 
 		if cfg['pre_load_hook'] ~= nil and type(cfg['pre_load_hook']) == 'function' then
@@ -42,43 +47,21 @@ function loadPlugin(modname, modpath)
 
 	vim.api.nvim_create_autocmd({'User'}, {
 		pattern = pluginName,
+		once = true,
+		nested = true,
 		callback = loadThisPlugin,
 	})
+
+	if cfg['events'] ~= nil then
+		vim.api.nvim_create_autocmd(cfg.events, {
+			callback = function()
+				vim.api.nvim_exec_autocmds('User', {
+					pattern = pluginName,
+				})
+			end
+		})
+	end
 end
 
-vim.print('walking')
 Util.walkmods("./lua/plugins", loadPlugin, 'plugins')
 
--- eg /nix/store/8p5yq86nw5imk33hsp8d291zs5s38q77-brs089lk6b0p03apwvr1khzcgk2jg5s1-source/init.lua
--- vim.print(thisdir:sub(2))
-
--- vim.opt.rtp:prepend(vim.g.nixplugins['lazy.nvim'])
--- require('aerial').setup({
--- 	float = {
--- 		relative = 'win',
--- 	},
--- 	layout = {
--- 		default_direction = 'float'
--- 	},
--- })
-
--- require('lazy').setup('plugins', {
--- 	change_detection = {
--- 		enabled = false,
--- 	},
--- 	defaults = {
--- 		lazy = true,
--- 	},
--- 	diff = {
--- 		cmd = 'terminal_git',
--- 	},
--- 	install = {
--- 		missing = false,
--- 	},
--- 	performace = {
--- 		reset_packpath = false,
--- 		rtp = {
--- 			reset = false
--- 		},
--- 	},
--- })
