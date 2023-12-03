@@ -1,6 +1,5 @@
 return {
 	'noice.nvim',
-	main = 'noice',
 	event = 'VeryLazy',
 
 	dependencies = {

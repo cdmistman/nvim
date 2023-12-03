@@ -1,7 +1,6 @@
 return {
 	'neo-tree.nvim',
 	event = 'VeryLazy',
-	main = 'neo-tree',
 
 	dependencies = {
 		'nui.nvim',

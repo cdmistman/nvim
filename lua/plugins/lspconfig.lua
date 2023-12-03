@@ -8,7 +8,6 @@ local M = {
 
 		{
 			'rust-tools.nvim',
-			main = 'rust-tools',
 			event = 'VeryLazy',
 			opts = {
 				server = {

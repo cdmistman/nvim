@@ -1,6 +1,5 @@
 return {
 	'aerial.nvim',
-	main = 'aerial',
 	event = 'VeryLazy',
 
 	dependencies = {

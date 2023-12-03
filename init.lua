@@ -58,6 +58,7 @@ function addPlugin(cfg)
 		local module = nil
 		if cfg['opts'] ~= nil or (cfg['config'] ~= false and cfg['config'] ~= nil) then
 			main = cfg.main or pluginName
+			main = main:match('(.*)%..*') or main
 			module = require(main)
 
 			local opts = cfg['opts'] or {}

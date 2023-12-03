@@ -1,6 +1,5 @@
 return {
 	'tokyonight.nvim',
-	main = 'tokyonight',
 	lazy = false,
 
 	opts = {

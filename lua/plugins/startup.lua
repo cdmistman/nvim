@@ -1,6 +1,5 @@
 return {
 	'startup.nvim',
-	main = 'startup',
 	lazy = false,
 
 	dependencies = {

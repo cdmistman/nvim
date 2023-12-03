@@ -1,6 +1,5 @@
 return {
 	'copilot.lua',
-	main = 'copilot',
 	event = 'InsertEnter',
 
 	opts = {
