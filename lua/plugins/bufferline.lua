@@ -1,7 +1,7 @@
 return {
 	'bufferline.nvim',
 	main = 'bufferline',
-	events = 'UIEnter',
+	event = 'UIEnter',
 	opts = {
 		-- options = {
 		--	diagnostics = 'nvim_lsp',

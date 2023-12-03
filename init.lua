@@ -36,7 +36,7 @@ function loadPlugin(modname, modpath)
 		end
 
 		local module = require(cfg.main)
-		if cfg['opts'] ~= nil or cfg['setup'] then
+		if cfg['opts'] ~= nil or cfg['config'] == true then
 			module.setup(cfg.opts or {})
 		end
 
@@ -52,8 +52,8 @@ function loadPlugin(modname, modpath)
 		callback = loadThisPlugin,
 	})
 
-	if cfg['events'] ~= nil then
-		vim.api.nvim_create_autocmd(cfg.events, {
+	if cfg['event'] ~= nil then
+		vim.api.nvim_create_autocmd(cfg.event, {
 			callback = function()
 				vim.api.nvim_exec_autocmds('User', {
 					pattern = pluginName,
