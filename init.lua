@@ -21,8 +21,10 @@ function loadPlugin(modname, modpath)
 	if pluginName == nil then
 		log.err('not loading, option [1] not specified.')
 		return
-	elseif cfg['main'] == nil then
-		log.err('not loading, option \'main\' not specified.')
+	end
+
+	if cfg['main'] == nil then
+		cfg.main = pluginName
 	end
 
 	plugins[pluginName] = cfg
@@ -40,8 +42,8 @@ function loadPlugin(modname, modpath)
 			})
 		end
 
-		if cfg['pre_setup_hook'] ~= nil and type(cfg['pre_setup_hook']) == 'function' then
-			cfg['pre_setup_hook'](cfg)
+		if type(cfg['pre_setup_hook']) == 'function' then
+			cfg:pre_setup_hook()
 		end
 
 		local module = require(cfg.main)
@@ -49,9 +51,14 @@ function loadPlugin(modname, modpath)
 			module.setup(cfg.opts or {})
 		end
 
-		if cfg['post_setup_hook'] ~= nil and type(cfg['post_setup_hook']) == 'function' then
-			cfg['post_setup_hook'](cfg)
+		if type(cfg['post_setup_hook']) == 'function' then
+			cfg:post_setup_hook(cfg)
 		end
+	end
+
+	if cfg['lazy'] == false then
+		setupPlugin()
+		return
 	end
 
 	vim.api.nvim_create_autocmd({'User'}, {
@@ -61,17 +68,13 @@ function loadPlugin(modname, modpath)
 		callback = setupPlugin,
 	})
 
-	local runSetupPlugin = function()
-		vim.api.nvim_exec_autocmds('User', {
-			pattern = pluginName,
-		})
-	end
-
-	if cfg['lazy'] == false then
-		runSetupPlugin()
-	elseif cfg['event'] ~= nil then
+	if cfg['event'] ~= nil then
 		vim.api.nvim_create_autocmd(cfg.event, {
-			callback = runSetupPlugin,
+			callback = function()
+				vim.api.nvim_exec_autocmds('User', {
+					pattern = pluginName,
+				})
+			end,
 		})
 	end
 end
