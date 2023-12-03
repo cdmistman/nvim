@@ -182,6 +182,11 @@
       flake = false;
     };
 
+    which-key-nvim = {
+      url = "github:folke/which-key.nvim";
+      flake = false;
+    };
+
     yanky-nvim = {
       url = "github:gbprod/yanky.nvim";
       flake = false;
@@ -253,6 +258,7 @@
             "telescope.nvim" = inputs.telescope-nvim;
             "todo-comments.nvim" = inputs.todo-comments-nvim;
             "tokyonight.nvim" = inputs.tokyonight-nvim;
+            "which-key.nvim" = inputs.which-key-nvim;
             "yanky.nvim" = inputs.yanky-nvim;
           };
 

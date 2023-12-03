@@ -34,7 +34,7 @@ function addPlugin(cfg)
 		elseif type(dep) == 'string' then
 			dependencies[ii] = dep
 		else
-			log.error('unrecognized dependency type: ' .. vim.inspect(dep))
+			log.err('unrecognized dependency type: ' .. vim.inspect(dep))
 		end
 	end
 
@@ -74,7 +74,7 @@ function addPlugin(cfg)
 		end
 
 		if type(cfg['post_setup_hook']) == 'function' then
-			cfg:post_setup_hook(cfg)
+			cfg:post_setup_hook(module)
 		end
 	end
 
@@ -157,7 +157,7 @@ Util.walkmods(
 )
 
 vim.schedule(
-  function()
+	function()
 		vim.api.nvim_exec_autocmds('User', {
 			pattern = 'VeryLazy',
 		})

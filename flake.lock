@@ -698,6 +698,7 @@
         "todo-comments-nvim": "todo-comments-nvim",
         "tokyonight-nvim": "tokyonight-nvim",
         "vim-vsnip": "vim-vsnip",
+        "which-key-nvim": "which-key-nvim",
         "yanky-nvim": "yanky-nvim"
       }
     },
@@ -844,6 +845,22 @@
       "original": {
         "owner": "hrsh7th",
         "repo": "vim-vsnip",
+        "type": "github"
+      }
+    },
+    "which-key-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1697801635,
+        "narHash": "sha256-uvghPj/teWrRMm09Gh8iQ/LV2nYJw0lmoiZK6L4+1cY=",
+        "owner": "folke",
+        "repo": "which-key.nvim",
+        "rev": "4433e5ec9a507e5097571ed55c02ea9658fb268a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "folke",
+        "repo": "which-key.nvim",
         "type": "github"
       }
     },
