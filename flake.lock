@@ -709,6 +709,7 @@
         "persistence-nvim": "persistence-nvim",
         "plenary-nvim": "plenary-nvim",
         "rust-tools-nvim": "rust-tools-nvim",
+        "startup-nvim": "startup-nvim",
         "substitute-nvim": "substitute-nvim",
         "telescope-nvim": "telescope-nvim",
         "todo-comments-nvim": "todo-comments-nvim",
@@ -747,6 +748,23 @@
       "original": {
         "owner": "simrat39",
         "repo": "rust-tools.nvim",
+        "type": "github"
+      }
+    },
+    "startup-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1701575815,
+        "narHash": "sha256-XhsuqWRZxDcUe4WXzWzkRUiDnUx33ew7yOMlJhW+aLU=",
+        "owner": "cdmistman",
+        "repo": "startup.nvim",
+        "rev": "6aeabdcfab9816f20801f2192af20669fb6c0ea1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "cdmistman",
+        "ref": "patch-1",
+        "repo": "startup.nvim",
         "type": "github"
       }
     },

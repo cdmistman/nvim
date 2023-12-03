@@ -157,6 +157,11 @@
       flake = false;
     };
 
+    startup-nvim = {
+      url = "github:cdmistman/startup.nvim/patch-1";
+      flake = false;
+    };
+
     substitute-nvim = {
       url = "github:gbprod/substitute.nvim";
       flake = false;
@@ -249,6 +254,7 @@
             "persistence.nvim" = inputs.persistence-nvim;
             "plenary.nvim" = inputs.plenary-nvim;
             "rust-tools.nvim" = inputs.rust-tools-nvim;
+            "startup.nvim" = inputs.startup-nvim;
             "substitute.nvim" = inputs.substitute-nvim;
             "telescope.nvim" = inputs.telescope-nvim;
             "todo-comments.nvim" = inputs.todo-comments-nvim;

@@ -40,9 +40,9 @@ function addPlugin(cfg)
 
 	local setupPlugin = function(ev)
 		if ev ~= nil then
-			log.info('setting up plugin ' .. pluginName .. ' for event ' .. ev.event .. ' : ' .. vim.inspect(ev))
+			log.debug('setting up plugin ' .. pluginName .. ' for event ' .. ev.event .. ' : ' .. vim.inspect(ev))
 		else
-			log.info('setting up plugin ' .. pluginName)
+			log.debug('setting up plugin ' .. pluginName)
 		end
 
 		if #dependencies > 0 then
@@ -90,6 +90,7 @@ function addPlugin(cfg)
 	})
 
 	if cfg['event'] == nil then
+		log.info('no events')
 		return
 	end
 
@@ -100,6 +101,7 @@ function addPlugin(cfg)
 		log.err('option \'events\' should be a table or a string')
 		return
 	end
+	log.info('processing events: ' .. vim.inspect(events))
 
 	local is_very_lazy = false
 	local shift = 0
@@ -128,6 +130,7 @@ function addPlugin(cfg)
 		})
 	end
 
+	log.debug('events: ' .. vim.inspect(events))
 	if #events > 0 then
 		vim.api.nvim_create_autocmd(events, {
 			once = true,
@@ -146,7 +149,7 @@ local thisdir = thisfile:match('(.*/)')
 Util.walkmods(
 	thisdir .. "lua/plugins",
 	function(modname, modpath)
-		log.info('loading config ' .. modname .. ' at ' .. modpath)
+		log.debug('loading config ' .. modname .. ' at ' .. modpath)
 		addPlugin(require(modname))
 	end,
 	'plugins'
