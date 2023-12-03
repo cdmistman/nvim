@@ -19,16 +19,24 @@ function addPlugin(cfg)
 		return
 	end
 
-	if cfg['main'] == nil then
-		cfg.main = pluginName
-	end
-
 	if plugins[pluginName] ~= nil then
 		log.err('already defined!')
 		return
 	end
 
 	plugins[pluginName] = cfg
+
+	local dependencies = {}
+	for ii, dep in ipairs(cfg.dependencies or {}) do
+		if type(dep) == 'table' then
+			addPlugin(dep)
+			dependencies[ii] = dep[1]
+		elseif type(dep) == 'string' then
+			dependencies[ii] = dep
+		else
+			log.error('unrecognized dependency type: ' .. vim.inspect(dep))
+		end
+	end
 
 	local setupPlugin = function(ev)
 		if ev ~= nil then
@@ -37,9 +45,9 @@ function addPlugin(cfg)
 			log.info('setting up plugin ' .. pluginName)
 		end
 
-		if cfg['dependencies'] ~= nil then
+		if #dependencies > 0 then
 			vim.api.nvim_exec_autocmds('User', {
-				pattern = cfg['dependencies'],
+				pattern = dependencies,
 			})
 		end
 
@@ -48,15 +56,20 @@ function addPlugin(cfg)
 		end
 
 		local module = nil
-		if cfg['opts'] ~= nil or cfg['config'] == true then
-			module = require(cfg.main)
+		if cfg['opts'] ~= nil or (cfg['config'] ~= false and cfg['config'] ~= nil) then
+			main = cfg.main or pluginName
+			module = require(main)
 
 			local opts = cfg['opts'] or {}
 			if type(opts) == 'function' then
 				opts = cfg:opts(module)
 			end
 
-			module.setup(opts)
+			if type(cfg['config']) == 'function' then
+				cfg:config(opts, main)
+			else
+				module.setup(opts)
+			end
 		end
 
 		if type(cfg['post_setup_hook']) == 'function' then
@@ -92,11 +105,6 @@ function addPlugin(cfg)
 	local shift = 0
 
 	for ii, ev in ipairs(events) do
-		if type(ev) == 'table' then
-			addPlugin(ev)
-			ev = ev[1]
-		end
-
 		if ev == 'VeryLazy' then
 			is_very_lazy = true
 			shift = shift + 1
@@ -136,11 +144,13 @@ local thisfile = debug.getinfo(1, 'S').source:sub(2)
 local thisdir = thisfile:match('(.*/)')
 
 Util.walkmods(
-	thisdir .. "/lua/plugins",
+	thisdir .. "lua/plugins",
 	function(modname, modpath)
 		log.info('loading config ' .. modname .. ' at ' .. modpath)
 		addPlugin(require(modname))
-	end, 'plugins')
+	end,
+	'plugins'
+)
 
 vim.schedule(
   function()
