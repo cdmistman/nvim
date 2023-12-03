@@ -12,11 +12,7 @@ local Util = require('lazy.core.util')
 
 local plugins = {}
 
-function loadPlugin(modname, modpath)
-	log.info('loading plugin ' .. modname .. ' at ' .. modpath)
-
-	local cfg = require(modname)
-
+function addPlugin(cfg)
 	local pluginName = cfg[1]
 	if pluginName == nil then
 		log.err('not loading, option [1] not specified.')
@@ -46,8 +42,9 @@ function loadPlugin(modname, modpath)
 			cfg:pre_setup_hook()
 		end
 
-		local module = require(cfg.main)
+		local module = nil
 		if cfg['opts'] ~= nil or cfg['config'] == true then
+			module = require(cfg.main)
 			module.setup(cfg.opts or {})
 		end
 
@@ -68,8 +65,51 @@ function loadPlugin(modname, modpath)
 		callback = setupPlugin,
 	})
 
-	if cfg['event'] ~= nil then
-		vim.api.nvim_create_autocmd(cfg.event, {
+	if cfg['event'] == nil then
+		return
+	end
+
+	local events = cfg.event
+	if type(events) == 'string' then
+		events = { events }
+	elseif type(events) ~= 'table' then
+		log.err('option \'events\' should be a table or a string')
+		return
+	end
+
+	local is_very_lazy = false
+	local shift = 0
+
+	for ii, ev in ipairs(events) do
+		if type(ev) == 'table' then
+			addPlugin(ev)
+			ev = ev[1]
+		end
+
+		if ev == 'VeryLazy' then
+			is_very_lazy = true
+			shift = shift + 1
+		end
+
+		events[ii - shift] = ev
+		events[ii] = nil
+	end
+
+	if is_very_lazy then
+		vim.api.nvim_create_autocmd('User', {
+			pattern = 'VeryLazy',
+			once = true,
+			callback = function()
+				vim.api.nvim_exec_autocmds('User', {
+					pattern = pluginName,
+				})
+			end,
+		})
+	end
+
+	if #events > 0 then
+		vim.api.nvim_create_autocmd(events, {
+			once = true,
 			callback = function()
 				vim.api.nvim_exec_autocmds('User', {
 					pattern = pluginName,
@@ -79,5 +119,18 @@ function loadPlugin(modname, modpath)
 	end
 end
 
-Util.walkmods("./lua/plugins", loadPlugin, 'plugins')
+Util.walkmods(
+	"./lua/plugins",
+	function(modname, modpath)
+		log.info('loading config ' .. modname .. ' at ' .. modpath)
+		addPlugin(require(modname))
+	end, 'plugins')
+
+vim.schedule(
+  function()
+		vim.api.nvim_exec_autocmds('User', {
+			pattern = 'VeryLazy',
+		})
+	end
+)
 
