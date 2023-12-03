@@ -325,7 +325,7 @@
               plugins;
           };
         in
-          pkgs.wrapNeovimUnstable pkgs.neovim-unwrapped nvim-config;
+          pkgs.wrapNeovimUnstable pkgs.neovim-unwrapped (nvim-config // { wrapRc = false; });
 
         packages.default = config.packages.neovim;
         packages.neovim = pkgs.stdenvNoCC.mkDerivation {
