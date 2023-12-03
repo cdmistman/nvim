@@ -8,7 +8,7 @@ vim.opt.signcolumn = 'yes'
 vim.opt.termguicolors = true
 
 local log = require('log')
-local Util = require('lazy.core.util')
+local Util = require('util')
 
 local plugins = {}
 

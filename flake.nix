@@ -87,11 +87,6 @@
       flake = false;
     };
 
-    lazy-nvim = {
-      url = "github:folke/lazy.nvim?submodules=1";
-      flake = false;
-    };
-
     neoscroll-nvim = {
       url = "github:karb94/neoscroll.nvim";
       flake = false;
@@ -245,7 +240,6 @@
             "direnv.vim" = inputs.direnv-vim;
             "flash.nvim" = inputs.flash-nvim;
             "hydra.nvim" = inputs.hydra-nvim;
-            "lazy.nvim" = inputs.lazy-nvim;
             "neoscroll.nvim" = inputs.neoscroll-nvim;
             "neo-tree.nvim" = inputs.neo-tree-nvim;
             "noice.nvim" = inputs.noice-nvim;
