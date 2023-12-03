@@ -7,9 +7,6 @@ vim.opt.number = true
 vim.opt.signcolumn = 'yes'
 vim.opt.termguicolors = true
 
-local thisdir = debug.getinfo(1, 'S').source:sub(2):match('(.*/)')
-vim.opt.runtimepath:prepend(thisdir)
-
 local log = require('log')
 local Util = require('util')
 
@@ -147,6 +144,7 @@ function addPlugin(cfg)
 	end
 end
 
+local thisdir = debug.getinfo(1, 'S').source:sub(2):match('(.*/)')
 Util.walkmods(
 	thisdir .. "lua/plugins",
 	function(modname, modpath)

@@ -246,9 +246,9 @@
           };
 
           nixpkgs-lua-file-text = lib.concatLines (
-            [ "return {" ]
+            ["return {"]
             ++ lib.mapAttrsToList (name: path: "\t[\"${name}\"] = \"${path}\",") tools
-            ++ [ "}" ]
+            ++ ["}"]
           );
 
           config-dir-src = builtins.path {
@@ -256,16 +256,16 @@
             path = ./.;
             filter = path: type: type == "directory" || lib.hasSuffix ".lua" path;
           };
-        in pkgs.symlinkJoin {
-          name = "neovim-config-dir";
-          paths = [
-            config-dir-src
-            (pkgs.writeTextDir "lua/nixpkgs.lua" nixpkgs-lua-file-text)
-          ];
-        };
+        in
+          pkgs.symlinkJoin {
+            name = "neovim-config-dir";
+            paths = [
+              config-dir-src
+              (pkgs.writeTextDir "lua/nixpkgs.lua" nixpkgs-lua-file-text)
+            ];
+          };
 
-        packages.default = config.packages.neovim;
-        packages.neovim = let
+        packages.neovim-with-plugins = let
           plugins = {
             inherit
               (inputs)
@@ -307,7 +307,7 @@
             "yanky.nvim" = inputs.yanky-nvim;
           };
 
-          nvim-with-plugins-config = pkgs.neovimUtils.makeNeovimConfig {
+          nvim-config = pkgs.neovimUtils.makeNeovimConfig {
             withNodejs = true;
             withPython3 = true;
             withRuby = true;
@@ -324,36 +324,36 @@
                 })
               plugins;
           };
-
-          nvim-with-plugins =
-            pkgs.wrapNeovimUnstable
-            pkgs.neovim-unwrapped
-            nvim-with-plugins-config;
         in
-          pkgs.stdenvNoCC.mkDerivation {
-            name = "neovim";
+          pkgs.wrapNeovimUnstable pkgs.neovim-unwrapped nvim-config;
 
-            buildInputs = [
-              pkgs.makeWrapper
-            ];
+        packages.default = config.packages.neovim;
+        packages.neovim = pkgs.stdenvNoCC.mkDerivation {
+          name = "neovim";
 
-            dontBuild = true;
-            dontUnpack = true;
+          buildInputs = [
+            pkgs.makeWrapper
+          ];
 
-            installPhase = ''
-              runHook preInstall
+          dontBuild = true;
+          dontUnpack = true;
 
-              mkdir -p $out/bin
-              makeWrapper ${nvim-with-plugins}/bin/nvim $out/bin/nvim \
-                --add-flags "-u ${config.packages.config-dir}/init.lua"
+          installPhase = ''
+            runHook preInstall
 
-              runHook postInstall
-            '';
+            mkdir -p $out/bin
+            makeWrapper ${config.packages.neovim-with-plugins}/bin/nvim $out/bin/nvim \
+              --add-flags "--cmd 'lua vim.opt.runtimepath:append(\"${config.packages.config-dir}\")'" \
+              --add-flags "--clean" \
+              --add-flags "-u ${config.packages.config-dir}/init.lua"
 
-            meta = {
-              mainProgram = "nvim";
-            };
+            runHook postInstall
+          '';
+
+          meta = {
+            mainProgram = "nvim";
           };
+        };
       };
     };
 }
