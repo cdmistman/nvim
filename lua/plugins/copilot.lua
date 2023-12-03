@@ -5,8 +5,8 @@ return {
 
 	opts = {
 		copilot_node_command = vim.g.nixpkgs['nodejs_20'] .. '/bin/node',
-		-- panel = { enabled = false },
-		-- suggestion = { enabled = false },
+		panel = { enabled = false },
+		suggestion = { enabled = false },
 	},
 }
 

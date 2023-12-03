@@ -1,7 +1,7 @@
 return {
 	'telescope.nvim',
 	main = 'telescope',
-	events = 'VeryLazy',
+	event = 'VeryLazy',
 
 	opts = {},
 }
