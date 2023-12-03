@@ -5,6 +5,19 @@ local M = {
 
 	dependencies = {
 		'nvim-cmp',
+
+		{
+			'rust-tools.nvim',
+			main = 'rust-tools',
+			event = 'VeryLazy',
+			opts = {
+				server = {
+					cmd = { vim.g.nixpkgs['rust-analyzer'] .. '/bin/rust-analyzer' },
+					standalone = false,
+				},
+			},
+		},
+
 	},
 }
 
