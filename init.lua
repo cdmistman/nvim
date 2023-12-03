@@ -23,6 +23,11 @@ function addPlugin(cfg)
 		cfg.main = pluginName
 	end
 
+	if plugins[pluginName] ~= nil then
+		log.err('already defined!')
+		return
+	end
+
 	plugins[pluginName] = cfg
 
 	local setupPlugin = function(ev)
@@ -45,7 +50,13 @@ function addPlugin(cfg)
 		local module = nil
 		if cfg['opts'] ~= nil or cfg['config'] == true then
 			module = require(cfg.main)
-			module.setup(cfg.opts or {})
+
+			local opts = cfg['opts'] or {}
+			if type(opts) == 'function' then
+				opts = cfg:opts(module)
+			end
+
+			module.setup(opts)
 		end
 
 		if type(cfg['post_setup_hook']) == 'function' then
@@ -91,11 +102,13 @@ function addPlugin(cfg)
 			shift = shift + 1
 		end
 
-		events[ii - shift] = ev
 		events[ii] = nil
+		events[ii - shift] = ev
 	end
 
 	if is_very_lazy then
+		-- this gets set by the last part of the for loop
+		events[0] = nil
 		vim.api.nvim_create_autocmd('User', {
 			pattern = 'VeryLazy',
 			once = true,
@@ -119,8 +132,11 @@ function addPlugin(cfg)
 	end
 end
 
+local thisfile = debug.getinfo(1, 'S').source:sub(2)
+local thisdir = thisfile:match('(.*/)')
+
 Util.walkmods(
-	"./lua/plugins",
+	thisdir .. "/lua/plugins",
 	function(modname, modpath)
 		log.info('loading config ' .. modname .. ' at ' .. modpath)
 		addPlugin(require(modname))
