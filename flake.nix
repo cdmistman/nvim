@@ -219,6 +219,51 @@
 
         formatter = pkgs.alejandra;
 
+        packages.config-dir = let
+          tools = {
+            inherit
+              (pkgs)
+              gopls
+              haskell-language-server
+              lua-language-server
+              marksman
+              nixd
+              nodejs_20
+              nushell
+              tailwindcss-language-server
+              taplo
+              vscode-langservers-extracted
+              ;
+
+            inherit (pkgs.fenix) rust-analyzer;
+
+            inherit
+              (pkgs.nodePackages_latest)
+              graphql-language-service-cli
+              svelte-language-server
+              typescript-language-server
+              ;
+          };
+
+          nixpkgs-lua-file-text = lib.concatLines (
+            [ "return {" ]
+            ++ lib.mapAttrsToList (name: path: "\t[\"${name}\"] = \"${path}\",") tools
+            ++ [ "}" ]
+          );
+
+          config-dir-src = builtins.path {
+            name = "neovim-config-dir-src";
+            path = ./.;
+            filter = path: type: type == "directory" || lib.hasSuffix ".lua" path;
+          };
+        in pkgs.symlinkJoin {
+          name = "neovim-config-dir";
+          paths = [
+            config-dir-src
+            (pkgs.writeTextDir "lua/nixpkgs.lua" nixpkgs-lua-file-text)
+          ];
+        };
+
         packages.default = config.packages.neovim;
         packages.neovim = let
           plugins = {
@@ -262,42 +307,6 @@
             "yanky.nvim" = inputs.yanky-nvim;
           };
 
-          tools = {
-            inherit
-              (pkgs)
-              gopls
-              haskell-language-server
-              lua-language-server
-              marksman
-              nixd
-              nodejs_20
-              nushell
-              tailwindcss-language-server
-              taplo
-              vscode-langservers-extracted
-              ;
-
-            inherit (pkgs.fenix) rust-analyzer;
-
-            inherit
-              (pkgs.nodePackages_latest)
-              graphql-language-service-cli
-              svelte-language-server
-              typescript-language-server
-              ;
-          };
-
-          mkNixPath = paths: lib.concatLines (lib.mapAttrsToList (name: path: "\t[\"${name}\"] = \"${path}\",") paths);
-
-          nix-paths = pkgs.writeTextFile {
-            name = "nvim-nix-paths.lua";
-            text = ''
-              vim.g.nixpkgs = {
-              ${mkNixPath tools}
-              }
-            '';
-          };
-
           nvim-with-plugins-config = pkgs.neovimUtils.makeNeovimConfig {
             withNodejs = true;
             withPython3 = true;
@@ -336,9 +345,7 @@
 
               mkdir -p $out/bin
               makeWrapper ${nvim-with-plugins}/bin/nvim $out/bin/nvim \
-                --add-flags "--cmd 'lua vim.opt.runtimepath:append(\"${./.}\")'" \
-                --add-flags "--cmd 'lua dofile(\"${nix-paths}\")'" \
-                --add-flags "-u ${./.}/init.lua"
+                --add-flags "-u ${config.packages.config-dir}/init.lua"
 
               runHook postInstall
             '';

@@ -1,3 +1,5 @@
+local nixpkgs = require('nixpkgs')
+
 local M = {
 	'nvim-lspconfig',
 	main = 'lspconfig',
@@ -11,12 +13,11 @@ local M = {
 			event = 'VeryLazy',
 			opts = {
 				server = {
-					cmd = { vim.g.nixpkgs['rust-analyzer'] .. '/bin/rust-analyzer' },
+					cmd = { nixpkgs['rust-analyzer'] .. '/bin/rust-analyzer' },
 					standalone = false,
 				},
 			},
 		},
-
 	},
 }
 
@@ -34,36 +35,36 @@ M.opts = {
 	clangd = {},
 
 	cssls = {
-		cmd = { vim.g.nixpkgs['vscode-langservers-extracted'] .. '/bin/vscode-css-language-server', '--stdio' },
+		cmd = { nixpkgs['vscode-langservers-extracted'] .. '/bin/vscode-css-language-server', '--stdio' },
 	},
 
 	eslint = {
-		cmd = { vim.g.nixpkgs['vscode-langservers-extracted'] .. '/bin/vscode-eslint-language-server', '--stdio' },
+		cmd = { nixpkgs['vscode-langservers-extracted'] .. '/bin/vscode-eslint-language-server', '--stdio' },
 	},
 
 	gopls = {
-		cmd = { vim.g.nixpkgs['gopls'] .. '/bin/gopls' },
+		cmd = { nixpkgs['gopls'] .. '/bin/gopls' },
 	},
 
 	graphql = {
-		cmd = { vim.g.nixpkgs['graphql-language-service-cli'] .. '/bin/graphql-lsp' },
+		cmd = { nixpkgs['graphql-language-service-cli'] .. '/bin/graphql-lsp' },
 	},
 
 	hls = {
-		cmd = { vim.g.nixpkgs['haskell-language-server'] .. '/bin/haskell-language-server-wrapper', '--lsp' },
+		cmd = { nixpkgs['haskell-language-server'] .. '/bin/haskell-language-server-wrapper', '--lsp' },
 	},
 
 	html = {
-		cmd = { vim.g.nixpkgs['vscode-langservers-extracted'] .. '/bin/vscode-html-language-server', '--stdio' },
+		cmd = { nixpkgs['vscode-langservers-extracted'] .. '/bin/vscode-html-language-server', '--stdio' },
 	},
 
 	jsonls = {
-		cmd = { vim.g.nixpkgs['vscode-langservers-extracted'] .. '/bin/vscode-json-language-server', '--stdio' },
+		cmd = { nixpkgs['vscode-langservers-extracted'] .. '/bin/vscode-json-language-server', '--stdio' },
 	},
 
 	-- TODO: for some reason lua-language-server doesn't work in this repo :(
 	-- lua_ls = {
-	-- 	cmd = { vim.g.nixpkgs['lua-language-server'] },
+	-- 	cmd = { nixpkgs['lua-language-server'] },
 	-- 	root_dir = {},
 	-- 	on_init = function(client)
 	-- 		local path = client.workspace_folders[1].name
@@ -90,35 +91,35 @@ M.opts = {
 
 	-- TODO: markdown lsp using vscode's lsp server
 	-- markdown = {
-	-- 	cmd = { vim.g.nixpkgs['vscode-langservers-extracted'] .. '/bin/vscode-markdown-language-server', '--stdio' },
+	-- 	cmd = { nixpkgs['vscode-langservers-extracted'] .. '/bin/vscode-markdown-language-server', '--stdio' },
 	-- },
 
 	marksman = {
-		cmd = { vim.g.nixpkgs['marksman'] .. '/bin/marksman', 'server' },
+		cmd = { nixpkgs['marksman'] .. '/bin/marksman', 'server' },
 	},
 
 	nixd = {
-		cmd = { vim.g.nixpkgs['nixd'] .. '/bin/nixd' },
+		cmd = { nixpkgs['nixd'] .. '/bin/nixd' },
 	},
 
 	nushell = {
-		cmd = { vim.g.nixpkgs['nushell'] .. '/bin/nu', '--lsp' },
+		cmd = { nixpkgs['nushell'] .. '/bin/nu', '--lsp' },
 	},
 
 	svelte = {
-		cmd = { vim.g.nixpkgs['svelte-language-server'] .. '/bin/svelteserver', '--stdio' },
+		cmd = { nixpkgs['svelte-language-server'] .. '/bin/svelteserver', '--stdio' },
 	},
 
 	tailwindcss = {
-		cmd = { vim.g.nixpkgs['tailwindcss-language-server'] .. '/bin/tailwindcss-language-server', '--stdio' },
+		cmd = { nixpkgs['tailwindcss-language-server'] .. '/bin/tailwindcss-language-server', '--stdio' },
 	},
 
 	taplo = {
-		cmd = { vim.g.nixpkgs['taplo'] .. '/bin/taplo', 'lsp', 'stdio' },
+		cmd = { nixpkgs['taplo'] .. '/bin/taplo', 'lsp', 'stdio' },
 	},
 
 	tsserver = {
-		cmd = { vim.g.nixpkgs['typescript-language-server'] .. '/bin/typescript-language-server', '--stdio' },
+		cmd = { nixpkgs['typescript-language-server'] .. '/bin/typescript-language-server', '--stdio' },
 	},
 }
 
