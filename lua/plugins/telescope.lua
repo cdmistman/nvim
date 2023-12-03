@@ -11,12 +11,12 @@ function M:post_setup_hook()
 
 	wk.register(
 		{
-			f = { builtins.find_files, 'files' },
-			g = { builtins.live_grep, 'grep' },
-			b = { builtins.buffers, 'buffers' },
-			h = { builtins.help_tags, 'help' },
+			ff = { builtins.find_files, 'find' },
+			ps = { builtins.live_grep, 'grep' },
+			bf = { builtins.buffers, 'find' },
+			hf = { builtins.help_tags, 'find' },
 		}, {
-			prefix = '<leader>f',
+			prefix = '<leader>',
 		}
 	)
 end

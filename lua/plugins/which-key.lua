@@ -12,10 +12,8 @@ end
 
 function M:post_setup_hook(wk)
 	wk.register({
-		f = { name = 'find' },
-		g = { name = 'go to' },
+		f = { name = 'file' },
 		p = { name = 'project' },
-		v = { name = 'version control' },
 	}, {
 		prefix = '<leader>',
 	})
@@ -24,8 +22,16 @@ function M:post_setup_hook(wk)
 		name = 'buffer',
 		n = { '<cmd>bn<cr>', 'next' },
 		p = { '<cmd>bp<cr>', 'previous' },
+		d = { '<cmd>bd<cr>', 'delete' },
 	}, {
 		prefix = '<leader>b',
+	})
+
+	wk.register({
+		name = 'help',
+		d = { '<cmd>helpc<cr>', 'close' },
+	}, {
+		prefix = '<leader>h',
 	})
 
 	wk.register({
@@ -36,6 +42,7 @@ function M:post_setup_hook(wk)
 		l = { '<cmd>wincmd l<cr>', 'right' },
 		s = { '<cmd>split<cr>', 'split' },
 		S = { '<cmd>vsplit<cr>', 'vsplit' },
+		d = { '<cmd>close<cr>', 'close' },
 	}, {
 		prefix = '<leader>w',
 	})
