@@ -343,22 +343,6 @@
         "type": "github"
       }
     },
-    "lazy-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1699092727,
-        "narHash": "sha256-adBcg8iSSO5eRLuZJnmU6m7IiRJXjoMDzN6yH2JrQIc=",
-        "owner": "folke",
-        "repo": "lazy.nvim",
-        "rev": "96584866b9c5e998cbae300594d0ccfd0c464627",
-        "type": "github"
-      },
-      "original": {
-        "owner": "folke",
-        "repo": "lazy.nvim",
-        "type": "github"
-      }
-    },
     "neo-tree-nvim": {
       "flake": false,
       "locked": {
@@ -692,7 +676,6 @@
         "flake-parts": "flake-parts",
         "flash-nvim": "flash-nvim",
         "hydra-nvim": "hydra-nvim",
-        "lazy-nvim": "lazy-nvim",
         "neo-tree-nvim": "neo-tree-nvim",
         "neoscroll-nvim": "neoscroll-nvim",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
@@ -709,6 +692,7 @@
         "persistence-nvim": "persistence-nvim",
         "plenary-nvim": "plenary-nvim",
         "rust-tools-nvim": "rust-tools-nvim",
+        "startup-nvim": "startup-nvim",
         "substitute-nvim": "substitute-nvim",
         "telescope-nvim": "telescope-nvim",
         "todo-comments-nvim": "todo-comments-nvim",
@@ -747,6 +731,23 @@
       "original": {
         "owner": "simrat39",
         "repo": "rust-tools.nvim",
+        "type": "github"
+      }
+    },
+    "startup-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1701575815,
+        "narHash": "sha256-XhsuqWRZxDcUe4WXzWzkRUiDnUx33ew7yOMlJhW+aLU=",
+        "owner": "cdmistman",
+        "repo": "startup.nvim",
+        "rev": "6aeabdcfab9816f20801f2192af20669fb6c0ea1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "cdmistman",
+        "ref": "patch-1",
+        "repo": "startup.nvim",
         "type": "github"
       }
     },

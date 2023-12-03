@@ -1,12 +1,10 @@
 return {
-	name = 'bufferline.nvim',
-	dir = vim.g.nixplugins['bufferline.nvim'],
-	main = 'bufferline',
-	event = 'VeryLazy',
-
+	'bufferline.nvim',
+	event = 'UIEnter',
 	opts = {
 		options = {
 			diagnostics = 'nvim_lsp',
 		},
-	}
+	},
 }
+

@@ -1,15 +1,35 @@
 local M = {
-	name = 'nvim-lspconfig',
-	dir = vim.g.nixplugins['nvim-lspconfig'],
+	'nvim-lspconfig',
+	main = 'lspconfig',
 	event = 'VeryLazy',
 
 	dependencies = {
-		'direnv.vim',
 		'nvim-cmp',
+
+		{
+			'rust-tools.nvim',
+			event = 'VeryLazy',
+			opts = {
+				server = {
+					cmd = { vim.g.nixpkgs['rust-analyzer'] .. '/bin/rust-analyzer' },
+					standalone = false,
+				},
+			},
+		},
+
 	},
 }
 
-local lspConfigs = {
+function M:config(opts, main)
+	local lsp = require(main)
+
+	for lsName, lsConfig in pairs(opts) do
+		lsConfig.capabilities = vim.g.lsp_capabilities or nil
+		lsp[lsName].setup(lsConfig)
+	end
+end
+
+M.opts = {
 	-- let `clangd` be used from the env since i think it's tied to the actual toolchain?
 	clangd = {},
 
@@ -22,15 +42,15 @@ local lspConfigs = {
 	},
 
 	gopls = {
-		cmd = { vim.g.nixpkgs['gopls'] .. '/bin/gopls' }
+		cmd = { vim.g.nixpkgs['gopls'] .. '/bin/gopls' },
 	},
 
 	graphql = {
-		cmd = { vim.g.nixpkgs['graphql-language-service-cli'] .. '/bin/graphql-lsp' }
+		cmd = { vim.g.nixpkgs['graphql-language-service-cli'] .. '/bin/graphql-lsp' },
 	},
 
 	hls = {
-		cmd = { vim.g.nixpkgs['haskell-language-server'] .. '/bin/haskell-language-server-wrapper', '--lsp' }
+		cmd = { vim.g.nixpkgs['haskell-language-server'] .. '/bin/haskell-language-server-wrapper', '--lsp' },
 	},
 
 	html = {
@@ -74,15 +94,15 @@ local lspConfigs = {
 	-- },
 
 	marksman = {
-		cmd = { vim.g.nixpkgs['marksman'] .. '/bin/marksman', 'server' }
+		cmd = { vim.g.nixpkgs['marksman'] .. '/bin/marksman', 'server' },
 	},
 
 	nixd = {
-		cmd = { vim.g.nixpkgs['nixd'] .. '/bin/nixd' }
+		cmd = { vim.g.nixpkgs['nixd'] .. '/bin/nixd' },
 	},
 
 	nushell = {
-		cmd = { vim.g.nixpkgs['nushell'] .. '/bin/nu', '--lsp' }
+		cmd = { vim.g.nixpkgs['nushell'] .. '/bin/nu', '--lsp' },
 	},
 
 	svelte = {
@@ -94,7 +114,7 @@ local lspConfigs = {
 	},
 
 	taplo = {
-		cmd = { vim.g.nixpkgs['taplo'] .. '/bin/taplo', 'lsp', 'stdio' }
+		cmd = { vim.g.nixpkgs['taplo'] .. '/bin/taplo', 'lsp', 'stdio' },
 	},
 
 	tsserver = {
@@ -102,12 +122,5 @@ local lspConfigs = {
 	},
 }
 
-function M.config()
-	local lsp = require('lspconfig')
-	for lsName, lsConfig in pairs(lspConfigs) do
-		lsConfig.capabilities = vim.g.lsp_capabilities
-		lsp[lsName].setup(lsConfig)
-	end
-end
-
 return M
+

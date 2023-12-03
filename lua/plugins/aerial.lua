@@ -1,6 +1,5 @@
 return {
-	name = 'aerial.nvim',
-	dir = vim.g.nixplugins['aerial.nvim'],
+	'aerial.nvim',
 	event = 'VeryLazy',
 
 	dependencies = {

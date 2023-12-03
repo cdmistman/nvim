@@ -1,17 +1,12 @@
 return {
-	name = 'tokyonight.nvim',
-	dir = vim.g.nixplugins['tokyonight.nvim'],
+	'tokyonight.nvim',
 	lazy = false,
-	priority = 1000,
 
 	opts = {
 		style = 'night',
 	},
 
-	config = function(self, opts)
-		require('tokyonight').setup(opts)
-
+	post_setup_hook = function()
 		vim.cmd([[colorscheme tokyonight]])
-	end,
+	end
 }
-

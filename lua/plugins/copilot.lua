@@ -1,6 +1,6 @@
 return {
-	name = 'copilot.lua',
-	dir = vim.g.nixplugins['copilot.lua'],
+	'copilot.lua',
+	event = 'InsertEnter',
 
 	opts = {
 		copilot_node_command = vim.g.nixpkgs['nodejs_20'] .. '/bin/node',

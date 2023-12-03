@@ -1,16 +1,14 @@
 return {
-	name = 'noice.nvim',
-	dir = vim.g.nixplugins['noice.nvim'],
+	'noice.nvim',
 	event = 'VeryLazy',
 
 	dependencies = {
 		'nui.nvim',
 
 		{
-			name = 'nvim-notify',
-			dir = vim.g.nixplugins['nvim-notify'],
-			config = true,
+			'nvim-notify',
 			main = 'notify',
+			config = true,
 		},
 	},
 

@@ -87,11 +87,6 @@
       flake = false;
     };
 
-    lazy-nvim = {
-      url = "github:folke/lazy.nvim?submodules=1";
-      flake = false;
-    };
-
     neoscroll-nvim = {
       url = "github:karb94/neoscroll.nvim";
       flake = false;
@@ -154,6 +149,11 @@
 
     rust-tools-nvim = {
       url = "github:simrat39/rust-tools.nvim";
+      flake = false;
+    };
+
+    startup-nvim = {
+      url = "github:cdmistman/startup.nvim/patch-1";
       flake = false;
     };
 
@@ -240,7 +240,6 @@
             "direnv.vim" = inputs.direnv-vim;
             "flash.nvim" = inputs.flash-nvim;
             "hydra.nvim" = inputs.hydra-nvim;
-            "lazy.nvim" = inputs.lazy-nvim;
             "neoscroll.nvim" = inputs.neoscroll-nvim;
             "neo-tree.nvim" = inputs.neo-tree-nvim;
             "noice.nvim" = inputs.noice-nvim;
@@ -249,6 +248,7 @@
             "persistence.nvim" = inputs.persistence-nvim;
             "plenary.nvim" = inputs.plenary-nvim;
             "rust-tools.nvim" = inputs.rust-tools-nvim;
+            "startup.nvim" = inputs.startup-nvim;
             "substitute.nvim" = inputs.substitute-nvim;
             "telescope.nvim" = inputs.telescope-nvim;
             "todo-comments.nvim" = inputs.todo-comments-nvim;
@@ -289,10 +289,6 @@
               vim.g.nixpkgs = {
               ${mkNixPath tools}
               }
-
-              vim.g.nixplugins = {
-              ${mkNixPath plugins}
-              }
             '';
           };
 
@@ -301,9 +297,17 @@
             withPython3 = true;
             withRuby = true;
 
-            plugins = [
-              pkgs.vimPlugins.nvim-treesitter.withAllGrammars
-            ];
+            plugins =
+              [
+                pkgs.vimPlugins.nvim-treesitter.withAllGrammars
+              ]
+              ++ lib.mapAttrsToList
+              (name: plugin:
+                pkgs.vimUtils.buildVimPlugin {
+                  inherit name;
+                  src = plugin;
+                })
+              plugins;
           };
 
           nvim-with-plugins =
