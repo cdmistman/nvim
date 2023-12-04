@@ -8,16 +8,20 @@ return {
 		{
 			'nvim-notify',
 			main = 'notify',
-			config = true,
+			opts = {
+				minimum_width = '25',
+				render = 'compact',
+				timeout = 3000,
+			},
 		},
 	},
 
 	opts = {
 		lsp = {
 			override = {
-				["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-				["vim.lsp.util.stylize_markdown"] = true,
-				["cmp.entry.get_documentation"] = true,
+				['vim.lsp.util.convert_input_to_markdown_lines'] = true,
+				['vim.lsp.util.stylize_markdown'] = true,
+				['cmp.entry.get_documentation'] = true,
 			},
 		},
 

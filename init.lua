@@ -13,6 +13,11 @@ local Util = require('util')
 local plugins = {}
 
 function addPlugin(cfg)
+	if type(cfg) ~= 'table' then
+		log.err('plugin config should be a table')
+		return
+	end
+
 	local pluginName = cfg[1]
 	if pluginName == nil then
 		log.err('not loading, option [1] not specified.')

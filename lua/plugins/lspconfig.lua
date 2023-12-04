@@ -21,6 +21,34 @@ local M = {
 	},
 }
 
+function buf_load_lsp_keymap(ev)
+	local wk = require('which-key')
+
+	local function code_format()
+		vim.lsp.buf.format({
+			async = true,
+		})
+	end
+
+	wk.register({
+		c = {
+			f = { code_format, 'format' },
+			l = { vim.lsp.codelens.refresh, 'codelens' },
+			r = { vim.lsp.buf.rename, 'rename' },
+		},
+		g = {
+			d = { vim.lsp.buf.definition, 'definition' },
+			D = { vim.lsp.buf.declaration, 'declaration' },
+			i = { vim.lsp.buf.implementation, 'implementation' },
+			r = { vim.lsp.buf.references, 'references' },
+		},
+		H = { vim.lsp.buf.hover, 'hover' },
+	}, {
+		prefix = '<leader>',
+		buffer = ev.buf,
+	})
+end
+
 function M:config(opts, main)
 	local lsp = require(main)
 
@@ -28,6 +56,11 @@ function M:config(opts, main)
 		lsConfig.capabilities = vim.g.lsp_capabilities or nil
 		lsp[lsName].setup(lsConfig)
 	end
+
+	vim.api.nvim_create_autocmd('LSPAttach', {
+		group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+		callback = buf_load_lsp_keymap,
+	})
 end
 
 M.opts = {

@@ -1,4 +1,4 @@
-return {
+local M = {
 	'neo-tree.nvim',
 	event = 'VeryLazy',
 
@@ -14,4 +14,14 @@ return {
 		},
 	},
 }
+
+function M:post_setup_hook(neotree)
+	local wk = require('which-key')
+
+	wk.register({
+		["<leader>ft"] = { "<cmd>Neotree toggle<cr>", "filetree" },
+	})
+end
+
+return M
 
