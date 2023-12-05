@@ -31,6 +31,17 @@ function buf_load_lsp_keymap(ev)
 	end
 
 	wk.register({
+		g = {
+			d = { vim.lsp.buf.definition, 'definition' },
+			D = { vim.lsp.buf.declaration, 'declaration' },
+			i = { vim.lsp.buf.implementation, 'implementation' },
+			r = { vim.lsp.buf.references, 'references' },
+		},
+	}, {
+		buffer = ev.buf,
+	})
+
+	wk.register({
 		c = {
 			f = { code_format, 'format' },
 			l = { vim.lsp.codelens.refresh, 'codelens' },
