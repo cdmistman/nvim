@@ -7,17 +7,6 @@ local M = {
 
 	dependencies = {
 		'nvim-cmp',
-
-		{
-			'rust-tools.nvim',
-			event = 'VeryLazy',
-			opts = {
-				server = {
-					cmd = { nixpkgs['rust-analyzer'] .. '/bin/rust-analyzer' },
-					standalone = false,
-				},
-			},
-		},
 	},
 }
 
@@ -67,6 +56,14 @@ function M:config(opts, main)
 		lsConfig.capabilities = vim.g.lsp_capabilities or nil
 		lsp[lsName].setup(lsConfig)
 	end
+
+	require('rust-tools').setup({
+		server = {
+			cmd = { nixpkgs['rust-analyzer'] .. '/bin/rust-analyzer' },
+			standalone = false,
+			capabilities = vim.g.lsp_capabilities or nil,
+		},
+	})
 
 	vim.api.nvim_create_autocmd('LSPAttach', {
 		group = vim.api.nvim_create_augroup('UserLspConfig', {}),
