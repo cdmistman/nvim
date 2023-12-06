@@ -9,7 +9,7 @@ function M.debug(msg)
 end
 
 function M.info(msg)
-	-- vim.notify('info: ' .. msg, vim.log.levels.INFO)
+	vim.notify('info: ' .. msg, vim.log.levels.INFO)
 end
 
 function M.warn(msg)

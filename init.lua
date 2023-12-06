@@ -97,7 +97,7 @@ function addPlugin(cfg)
 	})
 
 	if cfg['event'] == nil then
-		log.info('no events')
+		log.debug('no events')
 		return
 	end
 
@@ -108,7 +108,7 @@ function addPlugin(cfg)
 		log.err('option \'events\' should be a table or a string')
 		return
 	end
-	log.info('processing events: ' .. vim.inspect(events))
+	log.debug('processing events: ' .. vim.inspect(events))
 
 	local is_very_lazy = false
 	local shift = 0
@@ -137,7 +137,7 @@ function addPlugin(cfg)
 		})
 	end
 
-	log.debug('events: ' .. vim.inspect(events))
+	log.debug('events for ' .. pluginName .. ': ' .. vim.inspect(events))
 	if #events > 0 then
 		vim.api.nvim_create_autocmd(events, {
 			once = true,
