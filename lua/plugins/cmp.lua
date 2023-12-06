@@ -5,6 +5,9 @@ local M = {
 
 	dependencies = {
 		{
+			'cmp-nvim-lsp',
+		},
+		{
 			'copilot-cmp',
 			dependencies = { 'copilot.lua' },
 			main = 'copilot_cmp',
@@ -74,7 +77,7 @@ function M:opts(cmp)
 end
 
 function M:post_setup_hook()
-	vim.g.lsp_capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+	vim.g.lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 end
 
 return M
