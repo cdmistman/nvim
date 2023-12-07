@@ -20,7 +20,7 @@ function M:opts(cmp)
 	local mapping = {
 		['<CR>'] = cmp.mapping({
 			i = function(fallback)
-				if cmp.visible() and cmp.get_active_entry() then
+				if cmp.visible() and cmp.get_selected_entry() then
 					cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
 				else
 					fallback()
