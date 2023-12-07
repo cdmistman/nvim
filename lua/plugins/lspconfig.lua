@@ -3,7 +3,7 @@ local nixpkgs = require('nixpkgs')
 local M = {
 	'nvim-lspconfig',
 	main = 'lspconfig',
-	event = 'VeryLazy',
+	lazy = false,
 
 	dependencies = {
 		'nvim-cmp',
@@ -110,33 +110,6 @@ M.opts = {
 		cmd = { nixpkgs['vscode-langservers-extracted'] .. '/bin/vscode-json-language-server', '--stdio' },
 	},
 
-	-- TODO: for some reason lua-language-server doesn't work in this repo :(
-	-- lua_ls = {
-	-- 	cmd = { nixpkgs['lua-language-server'] },
-	-- 	root_dir = {},
-	-- 	on_init = function(client)
-	-- 		local path = client.workspace_folders[1].name
-	-- 		if vim.loop.fs_stat(path .. '/.luarc.json') or vim.loop.fs_stat(path .. '/.luarc.jsonc') then
-	-- 			return true
-	-- 		end
-	-- 		client.config.settings = vim.tbl_deep_extend('force', client.config.settings, {
-	-- 			Lua = {
-	-- 				runtime = {
-	-- 					version = 'LuaJIT',
-	-- 				},
-	-- 				workspace = {
-	-- 					checkThirdParty = false,
-	-- 					library = vim.api.nvim_get_runtime_file('', true),
-	-- 				},
-	-- 			}
-	-- 		})
-	-- 		client.notify('workspace/didChangeConfiguration', {
-	-- 			settings = client.config.settings,
-	-- 		})
-	-- 		return true
-	-- 	end,
-	-- },
-
 	-- TODO: markdown lsp using vscode's lsp server
 	-- markdown = {
 	-- 	cmd = { nixpkgs['vscode-langservers-extracted'] .. '/bin/vscode-markdown-language-server', '--stdio' },
@@ -170,6 +143,32 @@ M.opts = {
 		cmd = { nixpkgs['typescript-language-server'] .. '/bin/typescript-language-server', '--stdio' },
 	},
 }
+
+local pathlib = require('plenary.path')
+M.opts.lua_ls = {
+	cmd = { nixpkgs['lua-language-server'] .. '/bin/lua-language-server' },
+	on_init = function(client)
+		local path = client.workspace_folders[1].name
+		if pathlib.exists(path .. '/.luarc.json') or pathlib.exists(path .. '/.luarc.jsonc') then
+			return true
+		end
+		client.config.settings = vim.tbl_deep_extend('force', client.config.settings, {
+			Lua = {
+				runtime = {
+					version = 'LuaJIT',
+				},
+				workspace = {
+					checkThirdParty = false,
+					library = vim.api.nvim_get_runtime_file('', true),
+				},
+			}
+		})
+		client.notify('workspace/didChangeConfiguration', {
+			settings = client.config.settings,
+		})
+		return true
+	end,
+},
 
 return M
 
