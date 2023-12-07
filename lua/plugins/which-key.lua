@@ -12,14 +12,14 @@ end
 
 function M:post_setup_hook(wk)
 	wk.register({
-		f = { name = 'file' },
-		p = { name = 'project' },
+		f = { name = '+file' },
+		p = { name = '+project' },
 	}, {
 		prefix = '<leader>',
 	})
 
 	wk.register({
-		name = 'buffer',
+		name = '+buffer',
 		n = { '<cmd>bn<cr>', 'next' },
 		p = { '<cmd>bp<cr>', 'previous' },
 		d = { '<cmd>bd<cr>', 'delete' },
@@ -28,14 +28,14 @@ function M:post_setup_hook(wk)
 	})
 
 	wk.register({
-		name = 'help',
+		name = '+help',
 		d = { '<cmd>helpc<cr>', 'close' },
 	}, {
 		prefix = '<leader>h',
 	})
 
 	wk.register({
-		name = 'window',
+		name = '+window',
 		h = { '<cmd>wincmd h<cr>', 'left' },
 		j = { '<cmd>wincmd j<cr>', 'down' },
 		k = { '<cmd>wincmd k<cr>', 'up' },

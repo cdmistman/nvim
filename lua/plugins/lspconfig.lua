@@ -32,6 +32,13 @@ function buf_load_lsp_keymap(ev)
 
 	wk.register({
 		c = {
+			a = { vim.lsp.buf.code_action, 'action', mode = { 'n', 'v' } },
+			d = {
+				name = "+diagnostic",
+				n = { vim.diagnostic.goto_next, 'next' },
+				N = { vim.diagnostic.goto_prev, 'previous' },
+				H = { vim.diagnostic.open_float, 'show' },
+			},
 			f = { code_format, 'format' },
 			l = { vim.lsp.codelens.refresh, 'codelens' },
 			r = { vim.lsp.buf.rename, 'rename' },
