@@ -148,8 +148,8 @@ local pathlib = require('plenary.path')
 M.opts.lua_ls = {
 	cmd = { nixpkgs['lua-language-server'] .. '/bin/lua-language-server' },
 	on_init = function(client)
-		local path = client.workspace_folders[1].name
-		if pathlib.exists(path .. '/.luarc.json') or pathlib.exists(path .. '/.luarc.jsonc') then
+		local path = pathlib.new(client.workspace_folders[1].name)
+		if path:joinpath('.luarc.json'):exists() or path:joinpath('.luarc.jsonc'):exists() then
 			return true
 		end
 		client.config.settings = vim.tbl_deep_extend('force', client.config.settings, {
@@ -168,7 +168,7 @@ M.opts.lua_ls = {
 		})
 		return true
 	end,
-},
+}
 
 return M
 
