@@ -13,7 +13,7 @@ local Util = require('util')
 
 local plugins = {}
 
-function addPlugin(cfg)
+local function addPlugin(cfg)
 	if type(cfg) ~= 'table' then
 		log.err('plugin config should be a table')
 		return
@@ -63,7 +63,7 @@ function addPlugin(cfg)
 
 		local module = nil
 		if cfg['opts'] ~= nil or (cfg['config'] ~= false and cfg['config'] ~= nil) then
-			main = cfg.main or pluginName
+			local main = cfg.main or pluginName
 			main = main:match('(.*)%..*') or main
 			module = require(main)
 

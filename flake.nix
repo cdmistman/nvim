@@ -28,7 +28,7 @@
     };
 
     bufferline-nvim = {
-      url = "github:akinsho/bufferline.nvim/v4.4.0";
+      url = "github:akinsho/bufferline.nvim/v4.5.0";
       flake = false;
     };
 
@@ -93,7 +93,7 @@
     };
 
     neo-tree-nvim = {
-      url = "github:nvim-neo-tree/neo-tree.nvim?ref=3.13";
+      url = "github:nvim-neo-tree/neo-tree.nvim?ref=3.16";
       flake = false;
     };
 
@@ -147,8 +147,8 @@
       flake = false;
     };
 
-    rust-tools-nvim = {
-      url = "github:simrat39/rust-tools.nvim";
+    rustaceanvim = {
+      url = "github:mrcjkb/rustaceanvim";
       flake = false;
     };
 
@@ -163,7 +163,7 @@
     };
 
     telescope-nvim = {
-      url = "github:nvim-telescope/telescope.nvim?ref=0.1.4";
+      url = "github:nvim-telescope/telescope.nvim?ref=0.1.5";
       flake = false;
     };
 
@@ -297,7 +297,7 @@
             "peek.nvim" = inputs.peek-nvim;
             "persistence.nvim" = inputs.persistence-nvim;
             "plenary.nvim" = inputs.plenary-nvim;
-            "rust-tools.nvim" = inputs.rust-tools-nvim;
+            "rustaceanvim" = inputs.rustaceanvim;
             "startup.nvim" = inputs.startup-nvim;
             "substitute.nvim" = inputs.substitute-nvim;
             "telescope.nvim" = inputs.telescope-nvim;
