@@ -40,8 +40,8 @@ function M:post_setup_hook(wk)
 		j = { '<cmd>wincmd j<cr>', 'down' },
 		k = { '<cmd>wincmd k<cr>', 'up' },
 		l = { '<cmd>wincmd l<cr>', 'right' },
-		s = { '<cmd>split<cr>', 'split' },
-		S = { '<cmd>vsplit<cr>', 'vsplit' },
+		S = { '<cmd>split<cr>', 'split' },
+		s = { '<cmd>vsplit<cr>', 'vsplit' },
 		d = { '<cmd>close<cr>', 'close' },
 	}, {
 		prefix = '<leader>w',
