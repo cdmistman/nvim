@@ -162,5 +162,13 @@ M.opts.lua_ls = {
 	end,
 }
 
+-- rustaceanvim doesn't use setup() args
+vim.g.rustaceanvim = {
+	server = {
+		capabilities = vim.g.lsp_capabilities or nil,
+		cmd = { nixpkgs['rust-analyzer'] .. '/bin/rust-analyzer' },
+	}
+}
+
 return M
 
