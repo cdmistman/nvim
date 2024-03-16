@@ -722,15 +722,16 @@
     "rustaceanvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1708820072,
-        "narHash": "sha256-bkcr7Km3Z89q6HX4wMoxTzdqFo+m+oZarPObxrMx3oc=",
+        "lastModified": 1710468696,
+        "narHash": "sha256-kd0IgnjkLWGgNE1WoY4w6WpTpZBkE/YH6Y1mbupHJFs=",
         "owner": "mrcjkb",
         "repo": "rustaceanvim",
-        "rev": "4d8edfd8c88a06d558fb73520a1530f20190cae1",
+        "rev": "69a22c2ec63ab375190006751562b62ebb318250",
         "type": "github"
       },
       "original": {
         "owner": "mrcjkb",
+        "ref": "4.13.0",
         "repo": "rustaceanvim",
         "type": "github"
       }

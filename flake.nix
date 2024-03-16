@@ -148,7 +148,7 @@
     };
 
     rustaceanvim = {
-      url = "github:mrcjkb/rustaceanvim";
+      url = "github:mrcjkb/rustaceanvim/4.13.0";
       flake = false;
     };
 

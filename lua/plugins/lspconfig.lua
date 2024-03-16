@@ -167,8 +167,21 @@ vim.g.rustaceanvim = {
 	server = {
 		capabilities = vim.g.lsp_capabilities or nil,
 		cmd = { nixpkgs['rust-analyzer'] .. '/bin/rust-analyzer' },
-	}
+		default_settings = {
+			['rust-analyzer'] = {
+				cargo = {
+					features = "all",
+					targetDir = true,
+				},
+				files = {
+					excludeDirs = {
+						".direnv",
+						"result",
+					},
+				},
+			},
+		},
+	},
 }
 
 return M
-
